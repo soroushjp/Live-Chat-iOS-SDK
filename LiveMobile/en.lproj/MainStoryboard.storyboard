@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="etsy_example_screenshot2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="8Tg-cp-F3d"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1I-yA-8M4">
+                                <items>
+                                    <navigationItem title="Title" id="EHe-EO-bcM">
+                                        <barButtonItem key="rightBarButtonItem" title="Item" id="brh-dp-xxt"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8Tg-cp-F3d" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="0L1-Za-Oqr"/>
+                            <constraint firstItem="R1I-yA-8M4" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="6fv-cz-Sfw"/>
+                            <constraint firstItem="8Tg-cp-F3d" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="J8P-Ib-us5"/>
+                            <constraint firstItem="8Tg-cp-F3d" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="LsC-18-kya"/>
+                            <constraint firstItem="R1I-yA-8M4" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="o8X-E8-GXh"/>
+                            <constraint firstItem="R1I-yA-8M4" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="qvk-HM-ZcX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="96" y="88"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="etsy_example_screenshot2.jpg" width="320" height="549"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
