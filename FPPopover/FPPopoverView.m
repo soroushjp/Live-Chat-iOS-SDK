@@ -132,7 +132,7 @@
     
     //NO BORDER
     if(self.border == NO) {
-        b = 10.0;
+        b = 10;
     }
     
     CGRect rect;
@@ -292,7 +292,7 @@
         if(_arrowDirection == FPPopoverArrowDirectionUp)
         {
             colors[0] = colors[1] = colors[2] = 0.8;
-            colors[4] = colors[5] = colors[6] = 0.6;
+            colors[4] = colors[5] = colors[6] = 0.75;
             colors[3] = colors[7] = 1.0;
         }
         else
@@ -395,7 +395,7 @@
     }
     else if(self.tint == FPPopoverLightGrayTint)
     {
-        CGContextSetRGBFillColor(ctx, 0.6, 0.6, 0.6, 1.0);
+        CGContextSetRGBFillColor(ctx, 0.75, 0.75, 0.75, 1.0);
     }
     else if(self.tint == FPPopoverRedTint)
     {

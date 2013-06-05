@@ -57,18 +57,23 @@
 
 -(void)addObservers
 {
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
     
-    [[NSNotificationCenter defaultCenter] 
-     addObserver:self 
-     selector:@selector(deviceOrientationDidChange:) 
-     name:@"UIDeviceOrientationDidChangeNotification" 
-     object:nil]; 
+    //All device orientation code commented out. Future versions will support landscape chat.
+    
+//    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];   
+//    
+//    [[NSNotificationCenter defaultCenter] 
+//     addObserver:self 
+//     selector:@selector(deviceOrientationDidChange:) 
+//     name:@"UIDeviceOrientationDidChangeNotification"
+//     object:nil];
+//    
+//        _deviceOrientation = [UIDevice currentDevice].orientation;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willPresentNewPopover:) name:@"FPNewPopoverPresented" object:nil];
     
-    _deviceOrientation = [UIDevice currentDevice].orientation;
+
     
 }
 
@@ -131,6 +136,7 @@
 #endif
         
         [_touchView setTouchedOutsideBlock:^{
+            
             [bself dismissPopoverAnimated:YES];
         }];
 

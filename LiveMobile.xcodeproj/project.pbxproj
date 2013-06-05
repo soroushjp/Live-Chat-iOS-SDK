@@ -11,6 +11,22 @@
 		730AD04B175DB45400E17FB5 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD046175DB45400E17FB5 /* FPPopoverController.m */; };
 		730AD04C175DB45400E17FB5 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD048175DB45400E17FB5 /* FPPopoverView.m */; };
 		730AD04D175DB45400E17FB5 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD04A175DB45400E17FB5 /* FPTouchView.m */; };
+		730AD065175E817900E17FB5 /* bubbleMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD04F175E817900E17FB5 /* bubbleMine.png */; };
+		730AD066175E817900E17FB5 /* bubbleMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD050175E817900E17FB5 /* bubbleMine@2x.png */; };
+		730AD067175E817900E17FB5 /* bubbleSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD051175E817900E17FB5 /* bubbleSomeone.png */; };
+		730AD068175E817900E17FB5 /* bubbleSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD052175E817900E17FB5 /* bubbleSomeone@2x.png */; };
+		730AD069175E817900E17FB5 /* missingAvatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD053175E817900E17FB5 /* missingAvatar.png */; };
+		730AD06A175E817900E17FB5 /* missingAvatar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD054175E817900E17FB5 /* missingAvatar@2x.png */; };
+		730AD06B175E817900E17FB5 /* typingMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD055175E817900E17FB5 /* typingMine.png */; };
+		730AD06C175E817900E17FB5 /* typingMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD056175E817900E17FB5 /* typingMine@2x.png */; };
+		730AD06D175E817900E17FB5 /* typingSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD057175E817900E17FB5 /* typingSomeone.png */; };
+		730AD06E175E817900E17FB5 /* typingSomeone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD058175E817900E17FB5 /* typingSomeone@2x.png */; };
+		730AD06F175E817900E17FB5 /* NSBubbleData.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD05B175E817900E17FB5 /* NSBubbleData.m */; };
+		730AD070175E817900E17FB5 /* UIBubbleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD05D175E817900E17FB5 /* UIBubbleHeaderTableViewCell.m */; };
+		730AD071175E817900E17FB5 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD05F175E817900E17FB5 /* UIBubbleTableView.m */; };
+		730AD072175E817900E17FB5 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD061175E817900E17FB5 /* UIBubbleTableViewCell.m */; };
+		730AD073175E817900E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD064175E817900E17FB5 /* UIBubbleTypingTableViewCell.m */; };
+		730AD07D175FBD1A00E17FB5 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD07C175FBD1A00E17FB5 /* ChatController.m */; };
 		73F7756D175BF82A00AA78B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756C175BF82A00AA78B1 /* UIKit.framework */; };
 		73F7756F175BF82A00AA78B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756E175BF82A00AA78B1 /* Foundation.framework */; };
 		73F77571175BF82A00AA78B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F77570175BF82A00AA78B1 /* CoreGraphics.framework */; };
@@ -35,6 +51,29 @@
 		730AD048175DB45400E17FB5 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
 		730AD049175DB45400E17FB5 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		730AD04A175DB45400E17FB5 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
+		730AD04F175E817900E17FB5 /* bubbleMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleMine.png; sourceTree = "<group>"; };
+		730AD050175E817900E17FB5 /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
+		730AD051175E817900E17FB5 /* bubbleSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSomeone.png; sourceTree = "<group>"; };
+		730AD052175E817900E17FB5 /* bubbleSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleSomeone@2x.png"; sourceTree = "<group>"; };
+		730AD053175E817900E17FB5 /* missingAvatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missingAvatar.png; sourceTree = "<group>"; };
+		730AD054175E817900E17FB5 /* missingAvatar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "missingAvatar@2x.png"; sourceTree = "<group>"; };
+		730AD055175E817900E17FB5 /* typingMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingMine.png; sourceTree = "<group>"; };
+		730AD056175E817900E17FB5 /* typingMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingMine@2x.png"; sourceTree = "<group>"; };
+		730AD057175E817900E17FB5 /* typingSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typingSomeone.png; sourceTree = "<group>"; };
+		730AD058175E817900E17FB5 /* typingSomeone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typingSomeone@2x.png"; sourceTree = "<group>"; };
+		730AD05A175E817900E17FB5 /* NSBubbleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBubbleData.h; sourceTree = "<group>"; };
+		730AD05B175E817900E17FB5 /* NSBubbleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBubbleData.m; sourceTree = "<group>"; };
+		730AD05C175E817900E17FB5 /* UIBubbleHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleHeaderTableViewCell.h; sourceTree = "<group>"; };
+		730AD05D175E817900E17FB5 /* UIBubbleHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleHeaderTableViewCell.m; sourceTree = "<group>"; };
+		730AD05E175E817900E17FB5 /* UIBubbleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableView.h; sourceTree = "<group>"; };
+		730AD05F175E817900E17FB5 /* UIBubbleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableView.m; sourceTree = "<group>"; };
+		730AD060175E817900E17FB5 /* UIBubbleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewCell.h; sourceTree = "<group>"; };
+		730AD061175E817900E17FB5 /* UIBubbleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTableViewCell.m; sourceTree = "<group>"; };
+		730AD062175E817900E17FB5 /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
+		730AD063175E817900E17FB5 /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
+		730AD064175E817900E17FB5 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
+		730AD07B175FBD1A00E17FB5 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
+		730AD07C175FBD1A00E17FB5 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 		73F77569175BF82A00AA78B1 /* LiveMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F7756C175BF82A00AA78B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		73F7756E175BF82A00AA78B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,12 +124,59 @@
 			path = FPPopover;
 			sourceTree = "<group>";
 		};
+		730AD04E175E817900E17FB5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				730AD04F175E817900E17FB5 /* bubbleMine.png */,
+				730AD050175E817900E17FB5 /* bubbleMine@2x.png */,
+				730AD051175E817900E17FB5 /* bubbleSomeone.png */,
+				730AD052175E817900E17FB5 /* bubbleSomeone@2x.png */,
+				730AD053175E817900E17FB5 /* missingAvatar.png */,
+				730AD054175E817900E17FB5 /* missingAvatar@2x.png */,
+				730AD055175E817900E17FB5 /* typingMine.png */,
+				730AD056175E817900E17FB5 /* typingMine@2x.png */,
+				730AD057175E817900E17FB5 /* typingSomeone.png */,
+				730AD058175E817900E17FB5 /* typingSomeone@2x.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		730AD059175E817900E17FB5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				730AD05A175E817900E17FB5 /* NSBubbleData.h */,
+				730AD05B175E817900E17FB5 /* NSBubbleData.m */,
+				730AD05C175E817900E17FB5 /* UIBubbleHeaderTableViewCell.h */,
+				730AD05D175E817900E17FB5 /* UIBubbleHeaderTableViewCell.m */,
+				730AD05E175E817900E17FB5 /* UIBubbleTableView.h */,
+				730AD05F175E817900E17FB5 /* UIBubbleTableView.m */,
+				730AD060175E817900E17FB5 /* UIBubbleTableViewCell.h */,
+				730AD061175E817900E17FB5 /* UIBubbleTableViewCell.m */,
+				730AD062175E817900E17FB5 /* UIBubbleTableViewDataSource.h */,
+				730AD063175E817900E17FB5 /* UIBubbleTypingTableViewCell.h */,
+				730AD064175E817900E17FB5 /* UIBubbleTypingTableViewCell.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		730AD074175E818600E17FB5 /* UIBubbleTableView */ = {
+			isa = PBXGroup;
+			children = (
+				730AD04E175E817900E17FB5 /* images */,
+				730AD059175E817900E17FB5 /* src */,
+			);
+			name = UIBubbleTableView;
+			sourceTree = "<group>";
+		};
 		73F77560175BF82A00AA78B1 = {
 			isa = PBXGroup;
 			children = (
+				730AD074175E818600E17FB5 /* UIBubbleTableView */,
 				73F77597175BFEA400AA78B1 /* QuartzCore.framework */,
 				73F7758F175BF87B00AA78B1 /* LiveMobile.h */,
 				73F77590175BF87B00AA78B1 /* LiveMobile.m */,
+				730AD07B175FBD1A00E17FB5 /* ChatController.h */,
+				730AD07C175FBD1A00E17FB5 /* ChatController.m */,
 				730AD043175DB45400E17FB5 /* FPPopover */,
 				73F77572175BF82A00AA78B1 /* LiveMobile */,
 				73F7756B175BF82A00AA78B1 /* Frameworks */,
@@ -201,6 +287,16 @@
 				73F77583175BF82A00AA78B1 /* Default-568h@2x.png in Resources */,
 				73F77586175BF82A00AA78B1 /* MainStoryboard.storyboard in Resources */,
 				730AD042175D90D200E17FB5 /* etsy_example_screenshot2.jpg in Resources */,
+				730AD065175E817900E17FB5 /* bubbleMine.png in Resources */,
+				730AD066175E817900E17FB5 /* bubbleMine@2x.png in Resources */,
+				730AD067175E817900E17FB5 /* bubbleSomeone.png in Resources */,
+				730AD068175E817900E17FB5 /* bubbleSomeone@2x.png in Resources */,
+				730AD069175E817900E17FB5 /* missingAvatar.png in Resources */,
+				730AD06A175E817900E17FB5 /* missingAvatar@2x.png in Resources */,
+				730AD06B175E817900E17FB5 /* typingMine.png in Resources */,
+				730AD06C175E817900E17FB5 /* typingMine@2x.png in Resources */,
+				730AD06D175E817900E17FB5 /* typingSomeone.png in Resources */,
+				730AD06E175E817900E17FB5 /* typingSomeone@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +314,12 @@
 				730AD04B175DB45400E17FB5 /* FPPopoverController.m in Sources */,
 				730AD04C175DB45400E17FB5 /* FPPopoverView.m in Sources */,
 				730AD04D175DB45400E17FB5 /* FPTouchView.m in Sources */,
+				730AD06F175E817900E17FB5 /* NSBubbleData.m in Sources */,
+				730AD070175E817900E17FB5 /* UIBubbleHeaderTableViewCell.m in Sources */,
+				730AD071175E817900E17FB5 /* UIBubbleTableView.m in Sources */,
+				730AD072175E817900E17FB5 /* UIBubbleTableViewCell.m in Sources */,
+				730AD073175E817900E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */,
+				730AD07D175FBD1A00E17FB5 /* ChatController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

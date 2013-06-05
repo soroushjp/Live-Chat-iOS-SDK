@@ -11,7 +11,6 @@
 @interface LiveMobile : NSObject
 
 - (void) initWithParentViewController:(UIViewController*)passedViewController NavigationBar:(UINavigationBar*)navBar;
-- (IBAction)clickFeedbackBtn:(id)sender;
-- (BOOL) showChat;
+
 
 @end
