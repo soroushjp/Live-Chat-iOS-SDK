@@ -6,15 +6,15 @@
 //  Copyright (c) 2013 Soroush Pour. All rights reserved.
 //
 
-#import "LiveMobile.h"
-#import "ChatController.h"
+#import "LiveMobileSDK.h"
+#import "ChatUIController.h"
 #import "FPPopoverController.h"
 #import "ARCMacros.h"
 #import "UIBubbleTableView.h"
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
 
-@interface LiveMobile () <UIBubbleTableViewDataSource, UITextFieldDelegate> {
+@interface LiveMobileSDK () <UIBubbleTableViewDataSource, UITextFieldDelegate> {
 
     UIBarButtonItem *button;
     UIViewController *parentViewController;
@@ -24,7 +24,7 @@
     NSInteger  windowWidth;
     NSInteger  windowHeight;
     
-    ChatController *myChatController;
+    ChatUIController *myChatUIController;
     UIBubbleTableView *myChat;
     NSMutableArray* messages;
     
@@ -41,7 +41,7 @@
 
 @end
 
-@implementation LiveMobile
+@implementation LiveMobileSDK
 
 - (void) initWithParentViewController:(UIViewController*)passedViewController NavigationBar:(UINavigationBar*)navBar
 {
@@ -89,9 +89,9 @@
     
     //Call functions to create controller, insert chat UI into controller as subview and call up Popover containing chat.
     
-    myChatController = [[ChatController alloc]init];
+    myChatUIController = [[ChatUIController alloc]init];
     [self createChatView];
-    [self createPopupoverWithController:myChatController];
+    [self createPopupoverWithController:myChatUIController];
     
     return YES;
 }
@@ -134,18 +134,18 @@
     myChat = [[UIBubbleTableView alloc] initWithFrame:CGRectMake(10,0,viewWidth-40,viewHeight-140)];
     [myChat setBubbleDataSource:self];
     [myChat setBounces:NO];
-    [myChatController.view addSubview:myChat];
+    [myChatUIController.view addSubview:myChat];
     
     //Create lower message area top border and background
     topBorder = [CALayer layer];
     topBorder.frame = CGRectMake(0, viewHeight-143, viewWidth, 3.0f);
     topBorder.backgroundColor = [[UIColor colorWithWhite:0.3 alpha:1] CGColor];
-    [myChatController.view.layer addSublayer:topBorder];    
+    [myChatUIController.view.layer addSublayer:topBorder];    
     
     lowerBG = [CALayer layer];
     lowerBG.frame = CGRectMake(0, viewHeight-140, viewWidth, 60);
     lowerBG.backgroundColor = [[UIColor colorWithWhite:0.85 alpha:1] CGColor];
-    [myChatController.view.layer addSublayer:lowerBG];
+    [myChatUIController.view.layer addSublayer:lowerBG];
     
     //Create msgBox
     msgBox = [[UITextField alloc] initWithFrame:CGRectMake(10, viewHeight-130, viewWidth-90, 40)];
@@ -157,14 +157,14 @@
     [msgBox setClearButtonMode: UITextFieldViewModeWhileEditing];
     [msgBox setContentVerticalAlignment: UIControlContentVerticalAlignmentCenter];
     [msgBox setDelegate: self];
-    [myChatController.view addSubview:msgBox];
+    [myChatUIController.view addSubview:msgBox];
     
     //Create send button
     sendMsgBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [sendMsgBtn setFrame:CGRectMake(viewWidth-75, viewHeight-130, 50, 40)];
     [sendMsgBtn setTitle:@"Send" forState:UIControlStateNormal];
     [sendMsgBtn addTarget:self action:@selector(sendMsgBtnReturn:) forControlEvents:UIControlEventTouchUpInside];
-    [myChatController.view addSubview:sendMsgBtn];
+    [myChatUIController.view addSubview:sendMsgBtn];
 
     return YES;
 }
@@ -188,6 +188,8 @@
 //Dismiss keyboard on Done
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    
+    if([[textField text] isEqualToString:@""]) return YES;
     
     NSBubbleData *newMsg = [NSBubbleData dataWithText:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
     

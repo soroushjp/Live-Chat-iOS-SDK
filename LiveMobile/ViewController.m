@@ -21,7 +21,7 @@
     
     UINavigationBar *clientNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     
-    livem = [[LiveMobile alloc] init];
+    livem = [[LiveMobileSDK alloc] init];
     [livem initWithParentViewController:self NavigationBar:clientNavBar];
     
 }

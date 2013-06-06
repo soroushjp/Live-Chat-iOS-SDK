@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LiveMobile : NSObject
+@interface LiveMobileSDK : NSObject
 
 - (void) initWithParentViewController:(UIViewController*)passedViewController NavigationBar:(UINavigationBar*)navBar;
 

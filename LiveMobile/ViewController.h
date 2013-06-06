@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LiveMobile.h"
+#import "LiveMobileSDK.h"
 
 
 @interface ViewController : UIViewController {
 
-    LiveMobile *livem;
+    LiveMobileSDK *livem;
     
 }
 
