@@ -30,3 +30,4 @@ typedef enum _NSBubbleTypingType
 - (BOOL) scrollToBottomWithAnimation:(BOOL)animated;
 
 @end
+                                        

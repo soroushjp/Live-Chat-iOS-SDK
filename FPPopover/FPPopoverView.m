@@ -10,9 +10,9 @@
 #import "FPPopoverView.h"
 #import "ARCMacros.h"
 
-#define FP_POPOVER_ARROW_HEIGHT 20.0
-#define FP_POPOVER_ARROW_BASE 20.0
-#define FP_POPOVER_RADIUS 10.0
+#define FP_POPOVER_ARROW_HEIGHT 10.0
+#define FP_POPOVER_ARROW_BASE 10.0
+#define FP_POPOVER_RADIUS 5.0
 
 //iVars
 @interface FPPopoverView()

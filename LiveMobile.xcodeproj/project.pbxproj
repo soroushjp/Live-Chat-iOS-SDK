@@ -27,6 +27,13 @@
 		730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */; };
 		730AD22F176028B700E17FB5 /* LMView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD22E176028B700E17FB5 /* LMView.m */; };
 		73D907571760614200512113 /* MessagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907561760614200512113 /* MessagesModel.m */; };
+		73D9075B1761789400512113 /* LMSockets.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075A1761789400512113 /* LMSockets.m */; };
+		73D907641761797B00512113 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075D1761797B00512113 /* base64.c */; };
+		73D907651761797B00512113 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907601761797B00512113 /* NSData+SRB64Additions.m */; };
+		73D907661761797B00512113 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907631761797B00512113 /* SRWebSocket.m */; };
+		73D9076917625E8400512113 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D9076817625E8400512113 /* CFNetwork.framework */; };
+		73D9076B17625E9600512113 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D9076A17625E9600512113 /* Security.framework */; };
+		73D9076D17625EB900512113 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D9076C17625EB900512113 /* libicucore.dylib */; };
 		73F7756D175BF82A00AA78B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756C175BF82A00AA78B1 /* UIKit.framework */; };
 		73F7756F175BF82A00AA78B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756E175BF82A00AA78B1 /* Foundation.framework */; };
 		73F77571175BF82A00AA78B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F77570175BF82A00AA78B1 /* CoreGraphics.framework */; };
@@ -76,6 +83,18 @@
 		730AD22E176028B700E17FB5 /* LMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMView.m; path = Views/LMView.m; sourceTree = "<group>"; };
 		73D907551760614200512113 /* MessagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesModel.h; path = Models/MessagesModel.h; sourceTree = "<group>"; };
 		73D907561760614200512113 /* MessagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagesModel.m; path = Models/MessagesModel.m; sourceTree = "<group>"; };
+		73D907591761789400512113 /* LMSockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMSockets.h; path = Libraries/LMSockets.h; sourceTree = "<group>"; };
+		73D9075A1761789400512113 /* LMSockets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMSockets.m; path = Libraries/LMSockets.m; sourceTree = "<group>"; };
+		73D9075D1761797B00512113 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		73D9075E1761797B00512113 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		73D9075F1761797B00512113 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		73D907601761797B00512113 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		73D907611761797B00512113 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		73D907621761797B00512113 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		73D907631761797B00512113 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		73D9076817625E8400512113 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		73D9076A17625E9600512113 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		73D9076C17625EB900512113 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		73F77569175BF82A00AA78B1 /* LiveMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F7756C175BF82A00AA78B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		73F7756E175BF82A00AA78B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -102,6 +121,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73D9076D17625EB900512113 /* libicucore.dylib in Frameworks */,
+				73D9076B17625E9600512113 /* Security.framework in Frameworks */,
+				73D9076917625E8400512113 /* CFNetwork.framework in Frameworks */,
 				73F77598175BFEA400AA78B1 /* QuartzCore.framework in Frameworks */,
 				73F7756D175BF82A00AA78B1 /* UIKit.framework in Frameworks */,
 				73F7756F175BF82A00AA78B1 /* Foundation.framework in Frameworks */,
@@ -171,6 +193,7 @@
 		730AD227175FF92D00E17FB5 /* Dependancies */ = {
 			isa = PBXGroup;
 			children = (
+				73D9075C1761797A00512113 /* SocketRocket */,
 				730AD0FA175FD9F300E17FB5 /* UIBubbleTableView */,
 				730AD043175DB45400E17FB5 /* FPPopover */,
 			);
@@ -180,6 +203,7 @@
 		730AD228175FF94000E17FB5 /* Supporting Code */ = {
 			isa = PBXGroup;
 			children = (
+				73D90758176177DD00512113 /* Libraries */,
 				73D907541760610F00512113 /* Models */,
 				730AD230176028C100E17FB5 /* Views */,
 			);
@@ -206,9 +230,36 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		73D90758176177DD00512113 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				73D907591761789400512113 /* LMSockets.h */,
+				73D9075A1761789400512113 /* LMSockets.m */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		73D9075C1761797A00512113 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				73D9075D1761797B00512113 /* base64.c */,
+				73D9075E1761797B00512113 /* base64.h */,
+				73D9075F1761797B00512113 /* NSData+SRB64Additions.h */,
+				73D907601761797B00512113 /* NSData+SRB64Additions.m */,
+				73D907611761797B00512113 /* SocketRocket-Prefix.pch */,
+				73D907621761797B00512113 /* SRWebSocket.h */,
+				73D907631761797B00512113 /* SRWebSocket.m */,
+			);
+			name = SocketRocket;
+			path = Dependancies/SocketRocket;
+			sourceTree = "<group>";
+		};
 		73F77560175BF82A00AA78B1 = {
 			isa = PBXGroup;
 			children = (
+				73D9076C17625EB900512113 /* libicucore.dylib */,
+				73D9076A17625E9600512113 /* Security.framework */,
+				73D9076817625E8400512113 /* CFNetwork.framework */,
 				73F77597175BFEA400AA78B1 /* QuartzCore.framework */,
 				730AD227175FF92D00E17FB5 /* Dependancies */,
 				730AD228175FF94000E17FB5 /* Supporting Code */,
@@ -357,6 +408,10 @@
 				730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */,
 				730AD22F176028B700E17FB5 /* LMView.m in Sources */,
 				73D907571760614200512113 /* MessagesModel.m in Sources */,
+				73D9075B1761789400512113 /* LMSockets.m in Sources */,
+				73D907641761797B00512113 /* base64.c in Sources */,
+				73D907651761797B00512113 /* NSData+SRB64Additions.m in Sources */,
+				73D907661761797B00512113 /* SRWebSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
