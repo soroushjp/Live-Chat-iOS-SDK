@@ -10,7 +10,7 @@
 
 @interface LiveMobileSDK : NSObject
 
-- (void) initWithParentViewController:(UIViewController*)passedViewController NavigationBar:(UINavigationBar*)navBar;
+- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem;
 
 
 @end

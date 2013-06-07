@@ -27,6 +27,6 @@ typedef enum _NSBubbleTypingType
 @property (nonatomic) NSBubbleTypingType typingBubble;
 @property (nonatomic) BOOL showAvatars;
 
-- (void) scrollToBottomWithAnimation:(BOOL)animated;
+- (BOOL) scrollToBottomWithAnimation:(BOOL)animated;
 
 @end

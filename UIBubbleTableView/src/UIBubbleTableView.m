@@ -152,15 +152,19 @@
     [self scrollToBottomWithAnimation:YES];
 }
 
-- (void) scrollToBottomWithAnimation:(BOOL)animated {
+- (BOOL) scrollToBottomWithAnimation:(BOOL)animated {
+    //Autoscroll to bottom of chat. Returns whether scroll actually happened.
     
-    //Autoscroll to bottom of chat
     int sectionCount = [self numberOfSections];
+    
+    if(sectionCount==0) return NO;
+    
     int rowsInLastSection = [self numberOfRowsInSection:sectionCount-1];
     
     NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:rowsInLastSection-1 inSection:sectionCount-1];
     [self scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
     
+    return YES;
 }
 
 #pragma mark - UITableViewDelegate implementation

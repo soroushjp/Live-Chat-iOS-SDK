@@ -25,6 +25,8 @@
 		730AD11E175FD9F300E17FB5 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD10C175FD9F300E17FB5 /* UIBubbleTableView.m */; };
 		730AD11F175FD9F300E17FB5 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD10E175FD9F300E17FB5 /* UIBubbleTableViewCell.m */; };
 		730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */; };
+		730AD22F176028B700E17FB5 /* LMView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD22E176028B700E17FB5 /* LMView.m */; };
+		73D907571760614200512113 /* MessagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907561760614200512113 /* MessagesModel.m */; };
 		73F7756D175BF82A00AA78B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756C175BF82A00AA78B1 /* UIKit.framework */; };
 		73F7756F175BF82A00AA78B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756E175BF82A00AA78B1 /* Foundation.framework */; };
 		73F77571175BF82A00AA78B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F77570175BF82A00AA78B1 /* CoreGraphics.framework */; };
@@ -70,6 +72,10 @@
 		730AD10F175FD9F300E17FB5 /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
 		730AD110175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
 		730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
+		730AD22D176028B700E17FB5 /* LMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMView.h; path = Views/LMView.h; sourceTree = "<group>"; };
+		730AD22E176028B700E17FB5 /* LMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMView.m; path = Views/LMView.m; sourceTree = "<group>"; };
+		73D907551760614200512113 /* MessagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesModel.h; path = Models/MessagesModel.h; sourceTree = "<group>"; };
+		73D907561760614200512113 /* MessagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagesModel.m; path = Models/MessagesModel.m; sourceTree = "<group>"; };
 		73F77569175BF82A00AA78B1 /* LiveMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F7756C175BF82A00AA78B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		73F7756E175BF82A00AA78B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,10 +180,30 @@
 		730AD228175FF94000E17FB5 /* Supporting Code */ = {
 			isa = PBXGroup;
 			children = (
-				730AD0F7175FD96200E17FB5 /* ChatUIController.h */,
-				730AD0F8175FD96200E17FB5 /* ChatUIController.m */,
+				73D907541760610F00512113 /* Models */,
+				730AD230176028C100E17FB5 /* Views */,
 			);
 			name = "Supporting Code";
+			sourceTree = "<group>";
+		};
+		730AD230176028C100E17FB5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				730AD0F7175FD96200E17FB5 /* ChatUIController.h */,
+				730AD0F8175FD96200E17FB5 /* ChatUIController.m */,
+				730AD22D176028B700E17FB5 /* LMView.h */,
+				730AD22E176028B700E17FB5 /* LMView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		73D907541760610F00512113 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				73D907551760614200512113 /* MessagesModel.h */,
+				73D907561760614200512113 /* MessagesModel.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		73F77560175BF82A00AA78B1 = {
@@ -329,6 +355,8 @@
 				730AD11E175FD9F300E17FB5 /* UIBubbleTableView.m in Sources */,
 				730AD11F175FD9F300E17FB5 /* UIBubbleTableViewCell.m in Sources */,
 				730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */,
+				730AD22F176028B700E17FB5 /* LMView.m in Sources */,
+				73D907571760614200512113 /* MessagesModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
