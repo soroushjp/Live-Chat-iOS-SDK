@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SRWebSocket.h"
 
-@interface LMSockets : NSObject <SRWebSocketDelegate>
+@interface LMSockets : NSObject
 
 //Host must be given in exact format ws://hostname:5000/
-- (id) initWithHost:(NSString*) host;
+- (id) initWithHost:(NSString*)host delegate:(id <SRWebSocketDelegate>)socketDelegate;
 
 - (BOOL)_reconnect;
 

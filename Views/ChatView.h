@@ -1,5 +1,5 @@
 //
-//  LMView.h
+//  ChatView.h
 //  LiveMobile
 //
 //  Created by Soroush Pour on 5/06/13.
@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "LiveMobileSDK.h"
-#import "ChatUIController.h"
+#import "ChatViewController.h"
 #import "FPPopoverController.h"
 #import "ARCMacros.h"
 #import "UIBubbleTableView.h"
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
 
-@interface LMView : NSObject  <UIBubbleTableViewDataSource, UITextFieldDelegate> {
+@interface ChatView : NSObject  <UIBubbleTableViewDataSource, UITextFieldDelegate> {
     
 }
 

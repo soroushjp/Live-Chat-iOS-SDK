@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Soroush Pour. All rights reserved.
 //
 
-#import "ChatUIController.h"
+#import "ChatViewController.h"
 
-@interface ChatUIController ()
+@interface ChatViewController ()
 
 @end
 
-@implementation ChatUIController
+@implementation ChatViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

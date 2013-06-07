@@ -11,7 +11,7 @@
 		730AD04B175DB45400E17FB5 /* FPPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD046175DB45400E17FB5 /* FPPopoverController.m */; };
 		730AD04C175DB45400E17FB5 /* FPPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD048175DB45400E17FB5 /* FPPopoverView.m */; };
 		730AD04D175DB45400E17FB5 /* FPTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD04A175DB45400E17FB5 /* FPTouchView.m */; };
-		730AD0F9175FD96300E17FB5 /* ChatUIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD0F8175FD96200E17FB5 /* ChatUIController.m */; };
+		730AD0F9175FD96300E17FB5 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD0F8175FD96200E17FB5 /* ChatViewController.m */; };
 		730AD112175FD9F300E17FB5 /* bubbleMine.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD0FC175FD9F300E17FB5 /* bubbleMine.png */; };
 		730AD113175FD9F300E17FB5 /* bubbleMine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD0FD175FD9F300E17FB5 /* bubbleMine@2x.png */; };
 		730AD114175FD9F300E17FB5 /* bubbleSomeone.png in Resources */ = {isa = PBXBuildFile; fileRef = 730AD0FE175FD9F300E17FB5 /* bubbleSomeone.png */; };
@@ -25,7 +25,7 @@
 		730AD11E175FD9F300E17FB5 /* UIBubbleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD10C175FD9F300E17FB5 /* UIBubbleTableView.m */; };
 		730AD11F175FD9F300E17FB5 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD10E175FD9F300E17FB5 /* UIBubbleTableViewCell.m */; };
 		730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */; };
-		730AD22F176028B700E17FB5 /* LMView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD22E176028B700E17FB5 /* LMView.m */; };
+		730AD22F176028B700E17FB5 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD22E176028B700E17FB5 /* ChatView.m */; };
 		73D907571760614200512113 /* MessagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907561760614200512113 /* MessagesModel.m */; };
 		73D9075B1761789400512113 /* LMSockets.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075A1761789400512113 /* LMSockets.m */; };
 		73D907641761797B00512113 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075D1761797B00512113 /* base64.c */; };
@@ -34,6 +34,7 @@
 		73D9076917625E8400512113 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D9076817625E8400512113 /* CFNetwork.framework */; };
 		73D9076B17625E9600512113 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D9076A17625E9600512113 /* Security.framework */; };
 		73D9076D17625EB900512113 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 73D9076C17625EB900512113 /* libicucore.dylib */; };
+		73D907711762659A00512113 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907701762659A00512113 /* ChatController.m */; };
 		73F7756D175BF82A00AA78B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756C175BF82A00AA78B1 /* UIKit.framework */; };
 		73F7756F175BF82A00AA78B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7756E175BF82A00AA78B1 /* Foundation.framework */; };
 		73F77571175BF82A00AA78B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F77570175BF82A00AA78B1 /* CoreGraphics.framework */; };
@@ -58,8 +59,8 @@
 		730AD048175DB45400E17FB5 /* FPPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPPopoverView.m; sourceTree = "<group>"; };
 		730AD049175DB45400E17FB5 /* FPTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPTouchView.h; sourceTree = "<group>"; };
 		730AD04A175DB45400E17FB5 /* FPTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPTouchView.m; sourceTree = "<group>"; };
-		730AD0F7175FD96200E17FB5 /* ChatUIController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatUIController.h; sourceTree = "<group>"; };
-		730AD0F8175FD96200E17FB5 /* ChatUIController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatUIController.m; sourceTree = "<group>"; };
+		730AD0F7175FD96200E17FB5 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		730AD0F8175FD96200E17FB5 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		730AD0FC175FD9F300E17FB5 /* bubbleMine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleMine.png; sourceTree = "<group>"; };
 		730AD0FD175FD9F300E17FB5 /* bubbleMine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubbleMine@2x.png"; sourceTree = "<group>"; };
 		730AD0FE175FD9F300E17FB5 /* bubbleSomeone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubbleSomeone.png; sourceTree = "<group>"; };
@@ -79,8 +80,8 @@
 		730AD10F175FD9F300E17FB5 /* UIBubbleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTableViewDataSource.h; sourceTree = "<group>"; };
 		730AD110175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBubbleTypingTableViewCell.h; sourceTree = "<group>"; };
 		730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
-		730AD22D176028B700E17FB5 /* LMView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMView.h; path = Views/LMView.h; sourceTree = "<group>"; };
-		730AD22E176028B700E17FB5 /* LMView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LMView.m; path = Views/LMView.m; sourceTree = "<group>"; };
+		730AD22D176028B700E17FB5 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Views/ChatView.h; sourceTree = "<group>"; };
+		730AD22E176028B700E17FB5 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Views/ChatView.m; sourceTree = "<group>"; };
 		73D907551760614200512113 /* MessagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesModel.h; path = Models/MessagesModel.h; sourceTree = "<group>"; };
 		73D907561760614200512113 /* MessagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagesModel.m; path = Models/MessagesModel.m; sourceTree = "<group>"; };
 		73D907591761789400512113 /* LMSockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMSockets.h; path = Libraries/LMSockets.h; sourceTree = "<group>"; };
@@ -95,6 +96,8 @@
 		73D9076817625E8400512113 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		73D9076A17625E9600512113 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		73D9076C17625EB900512113 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		73D9076F1762659A00512113 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatController.h; path = Controllers/ChatController.h; sourceTree = "<group>"; };
+		73D907701762659A00512113 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatController.m; path = Controllers/ChatController.m; sourceTree = "<group>"; };
 		73F77569175BF82A00AA78B1 /* LiveMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73F7756C175BF82A00AA78B1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		73F7756E175BF82A00AA78B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -206,6 +209,7 @@
 				73D90758176177DD00512113 /* Libraries */,
 				73D907541760610F00512113 /* Models */,
 				730AD230176028C100E17FB5 /* Views */,
+				73D9076E1762656100512113 /* Controllers */,
 			);
 			name = "Supporting Code";
 			sourceTree = "<group>";
@@ -213,10 +217,10 @@
 		730AD230176028C100E17FB5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				730AD0F7175FD96200E17FB5 /* ChatUIController.h */,
-				730AD0F8175FD96200E17FB5 /* ChatUIController.m */,
-				730AD22D176028B700E17FB5 /* LMView.h */,
-				730AD22E176028B700E17FB5 /* LMView.m */,
+				730AD0F7175FD96200E17FB5 /* ChatViewController.h */,
+				730AD0F8175FD96200E17FB5 /* ChatViewController.m */,
+				730AD22D176028B700E17FB5 /* ChatView.h */,
+				730AD22E176028B700E17FB5 /* ChatView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -252,6 +256,15 @@
 			);
 			name = SocketRocket;
 			path = Dependancies/SocketRocket;
+			sourceTree = "<group>";
+		};
+		73D9076E1762656100512113 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				73D9076F1762659A00512113 /* ChatController.h */,
+				73D907701762659A00512113 /* ChatController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		73F77560175BF82A00AA78B1 = {
@@ -400,18 +413,19 @@
 				730AD04B175DB45400E17FB5 /* FPPopoverController.m in Sources */,
 				730AD04C175DB45400E17FB5 /* FPPopoverView.m in Sources */,
 				730AD04D175DB45400E17FB5 /* FPTouchView.m in Sources */,
-				730AD0F9175FD96300E17FB5 /* ChatUIController.m in Sources */,
+				730AD0F9175FD96300E17FB5 /* ChatViewController.m in Sources */,
 				730AD11C175FD9F300E17FB5 /* NSBubbleData.m in Sources */,
 				730AD11D175FD9F300E17FB5 /* UIBubbleHeaderTableViewCell.m in Sources */,
 				730AD11E175FD9F300E17FB5 /* UIBubbleTableView.m in Sources */,
 				730AD11F175FD9F300E17FB5 /* UIBubbleTableViewCell.m in Sources */,
 				730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */,
-				730AD22F176028B700E17FB5 /* LMView.m in Sources */,
+				730AD22F176028B700E17FB5 /* ChatView.m in Sources */,
 				73D907571760614200512113 /* MessagesModel.m in Sources */,
 				73D9075B1761789400512113 /* LMSockets.m in Sources */,
 				73D907641761797B00512113 /* base64.c in Sources */,
 				73D907651761797B00512113 /* NSData+SRB64Additions.m in Sources */,
 				73D907661761797B00512113 /* SRWebSocket.m in Sources */,
+				73D907711762659A00512113 /* ChatController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

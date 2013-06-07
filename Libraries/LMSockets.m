@@ -16,18 +16,21 @@
     int connectCount;
     
     NSMutableDictionary *_messagesSending;
+
+    id <SRWebSocketDelegate> delegate;
 }
 
 @end
 
 @implementation LMSockets
 
-- (id) initWithHost:(NSString*) host {
+- (id) initWithHost:(NSString*)host delegate:(id <SRWebSocketDelegate>)socketDelegate {
     
     self = [super init];
     if(!self) return nil;
     
     HOST = host;
+    delegate = socketDelegate;
     connectCount = 0;
 
     return self;
@@ -51,30 +54,9 @@
     }    
     
     _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:HOST]]];
-    _webSocket.delegate = self;
+    _webSocket.delegate = delegate;
     [_webSocket open];
     
     return YES;
-}
-
-#pragma mark - SRWebSocketDelegate
-
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    NSLog(@"Connection successfully made");
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    NSLog(@"Failed to connect or error in socket.");
-    _webSocket.delegate = nil;
-    _webSocket = nil;
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    _webSocket.delegate = nil;
-    _webSocket = nil;
-    _messagesSending = nil;
 }
 @end
