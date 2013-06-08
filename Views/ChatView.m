@@ -19,7 +19,6 @@
     NSInteger  windowHeight;
     
     ChatViewController *myChatViewController;
-    UIBubbleTableView *myChat;
     NSMutableArray* bubbleMessages;
     
     UITextField *msgBox;
@@ -28,6 +27,7 @@
     CALayer *topBorder;
 
 }
+
 
 - (NSMutableArray*) createBubbleArrayFromMessageArray:(NSMutableArray*) array;
 - (void) addLiveChatBtnOnNavItem:(UINavigationItem*)navItem;
@@ -46,11 +46,17 @@
 
 @implementation ChatView
 
-- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem initialMessages:passedMessages {
+//Synthesize not necessary in iOS 6 but key to access property as myChat, not _myChat.
+@synthesize delegate;
+@synthesize myChat;
+
+- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem initialMessages:passedMessages delegate:(id <ChatViewDelegate>)ChatViewDelegate {
     
     self = [super init];
     if(!self) return nil;
 
+    delegate = ChatViewDelegate;
+    
     parentViewController = passedViewController;
     viewWidth = parentViewController.view.frame.size.width;
     viewHeight = parentViewController.view.frame.size.height;
@@ -67,12 +73,19 @@
     return self;
 }
 
+- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem delegate:(id <ChatViewDelegate>)ChatViewDelegate {
+    
+    return [self initWithParentViewController:passedViewController NavigationItem:navItem initialMessages:[NSMutableArray array] delegate:ChatViewDelegate];
+    
+}
+
 
 - (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem {
     
-    return [self initWithParentViewController:passedViewController NavigationItem:navItem initialMessages:[NSMutableArray array]];
+    return [self initWithParentViewController:passedViewController NavigationItem:navItem delegate:nil];
     
 }
+
 - (NSMutableArray*) createBubbleArrayFromMessageArray:(NSMutableArray*) array {
     
     NSBubbleData* tempMsg;
@@ -226,15 +239,33 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     
-    if([[textField text] isEqualToString:@""]) return YES;
+    BOOL success = [self addMsgToViewWithText:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0] author:@"customer"];
     
-    NSBubbleData *newMsg = [NSBubbleData dataWithText:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0] type:BubbleTypeMine];
+    if(delegate != nil && [delegate respondsToSelector:@selector(userDidTypeMessage:date:)]) {
+        [delegate userDidTypeMessage:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    }
+    
+    if(success) [textField setText:@""];
+    
+    return YES;
+}
+
+- (BOOL) addMsgToViewWithText:(NSString*)text date:(NSDate*)date author:(NSString*)author {
+
+    if([text isEqualToString:@""]) return NO;
+    
+    NSBubbleType messageType;
+
+    if([author isEqualToString:@"agent"]) messageType = BubbleTypeSomeoneElse;
+    else if ([author isEqualToString:@"customer"]) messageType = BubbleTypeMine;
+    else return NO;
+    
+    
+    NSBubbleData *newMsg = [NSBubbleData dataWithText:text date:date type:messageType];
     
     [bubbleMessages addObject:newMsg];
     [myChat reloadData];
-    
-    [textField setText:@""];
-    
+
     return YES;
 }
 

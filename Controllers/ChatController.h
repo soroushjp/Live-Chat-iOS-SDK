@@ -11,7 +11,7 @@
 #import "MessagesModel.h"
 #import "LMSockets.h"
 
-@interface ChatController : NSObject  <SRWebSocketDelegate>
+@interface ChatController : NSObject  <ChatViewDelegate, SRWebSocketDelegate>
 
 - (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem;
 

@@ -37,7 +37,7 @@
     
 }
 
-- (BOOL)_reconnect {
+- (BOOL)reconnect {
     
     //(Re)connect method. Returns NO for invalid hostname. Otherwise YES, use webSocketDidOpen delegate method to confirm that the connection was actually made
     
@@ -58,5 +58,11 @@
     [_webSocket open];
     
     return YES;
+}
+
+- (void)send:(id)message {
+
+    [_webSocket send:message];
+
 }
 @end

@@ -14,7 +14,8 @@
 //Host must be given in exact format ws://hostname:5000/
 - (id) initWithHost:(NSString*)host delegate:(id <SRWebSocketDelegate>)socketDelegate;
 
-- (BOOL)_reconnect;
+- (BOOL)reconnect;
+- (void)send:(id)message;
 
 
 @end

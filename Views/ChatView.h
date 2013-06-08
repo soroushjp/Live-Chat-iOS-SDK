@@ -15,14 +15,32 @@
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
 
+@class ChatView;
+@protocol ChatViewDelegate <NSObject>
+
+@optional
+
+@required
+
+- (void) userDidTypeMessage:(NSString*)message date:(NSDate*)date;
+
+@end
+
 @interface ChatView : NSObject  <UIBubbleTableViewDataSource, UITextFieldDelegate> {
+    
+
     
 }
 
+@property (nonatomic, assign) id <ChatViewDelegate> delegate;
+@property (strong, nonatomic) UIBubbleTableView* myChat;
+
+- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem initialMessages:passedMessages delegate:(id <ChatViewDelegate>)ChatViewDelegate;
+
+- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem delegate:(id <ChatViewDelegate>)ChatViewDelegate;
+
 - (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem;
 
-- (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem initialMessages:(NSMutableArray*)passedMessages;
-
-
+- (BOOL) addMsgToViewWithText:(NSString*)text date:(NSDate*)date author:(NSString*)author;
 
 @end

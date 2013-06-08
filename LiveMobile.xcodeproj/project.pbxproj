@@ -203,7 +203,7 @@
 			name = Dependancies;
 			sourceTree = "<group>";
 		};
-		730AD228175FF94000E17FB5 /* Supporting Code */ = {
+		730AD228175FF94000E17FB5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				73D90758176177DD00512113 /* Libraries */,
@@ -211,7 +211,7 @@
 				730AD230176028C100E17FB5 /* Views */,
 				73D9076E1762656100512113 /* Controllers */,
 			);
-			name = "Supporting Code";
+			name = Application;
 			sourceTree = "<group>";
 		};
 		730AD230176028C100E17FB5 /* Views */ = {
@@ -275,7 +275,7 @@
 				73D9076817625E8400512113 /* CFNetwork.framework */,
 				73F77597175BFEA400AA78B1 /* QuartzCore.framework */,
 				730AD227175FF92D00E17FB5 /* Dependancies */,
-				730AD228175FF94000E17FB5 /* Supporting Code */,
+				730AD228175FF94000E17FB5 /* Application */,
 				73F7758F175BF87B00AA78B1 /* LiveMobileSDK.h */,
 				73F77590175BF87B00AA78B1 /* LiveMobileSDK.m */,
 				73F77572175BF82A00AA78B1 /* LiveMobileClientApp */,
