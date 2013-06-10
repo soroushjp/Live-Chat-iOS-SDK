@@ -148,7 +148,8 @@
 				730AD049175DB45400E17FB5 /* FPTouchView.h */,
 				730AD04A175DB45400E17FB5 /* FPTouchView.m */,
 			);
-			path = FPPopover;
+			name = FPPopover;
+			path = Dependancies/FPPopover;
 			sourceTree = "<group>";
 		};
 		730AD0FA175FD9F300E17FB5 /* UIBubbleTableView */ = {
@@ -157,7 +158,8 @@
 				730AD0FB175FD9F300E17FB5 /* images */,
 				730AD106175FD9F300E17FB5 /* src */,
 			);
-			path = UIBubbleTableView;
+			name = UIBubbleTableView;
+			path = Dependancies/UIBubbleTableView;
 			sourceTree = "<group>";
 		};
 		730AD0FB175FD9F300E17FB5 /* images */ = {
