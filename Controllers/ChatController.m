@@ -24,6 +24,8 @@
 
 @implementation ChatController
 
+{}
+
 #pragma mark - Initializers
 
 - (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem {
