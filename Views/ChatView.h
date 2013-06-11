@@ -33,7 +33,6 @@
 }
 
 @property (nonatomic, assign) id <ChatViewDelegate> delegate;
-@property (strong, nonatomic) UIBubbleTableView* myChat;
 
 - (id) initWithParentViewController:(UIViewController*)passedViewController NavigationItem:(UINavigationItem*)navItem initialMessages:passedMessages delegate:(id <ChatViewDelegate>)ChatViewDelegate;
 

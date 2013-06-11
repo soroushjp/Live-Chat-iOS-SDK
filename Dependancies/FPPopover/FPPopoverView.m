@@ -10,8 +10,8 @@
 #import "FPPopoverView.h"
 #import "ARCMacros.h"
 
-#define FP_POPOVER_ARROW_HEIGHT 20.0
-#define FP_POPOVER_ARROW_BASE 20.0
+#define FP_POPOVER_ARROW_HEIGHT 0.0
+#define FP_POPOVER_ARROW_BASE 0.0
 #define FP_POPOVER_RADIUS 5.0
 
 //iVars
@@ -174,7 +174,7 @@
         rect.size.width = w - 2*b;
         rect.size.height = h - 2*b;
         rect.origin.x = b;
-        rect.origin.y = b;        
+        rect.origin.y = 0;
     }
     
     
@@ -198,7 +198,7 @@
 	CGFloat inside_bottom = innerRect.origin.y + innerRect.size.height;
 	CGFloat outside_bottom = rect.origin.y + rect.size.height;    
 	CGFloat inside_top = innerRect.origin.y;
-	CGFloat outside_top = rect.origin.y;
+	CGFloat outside_top = 0;
 	CGFloat outside_left = rect.origin.x;
 
     
@@ -297,8 +297,8 @@
         }
         else
         {
-            colors[0] = colors[1] = colors[2] = 0.6;
-            colors[4] = colors[5] = colors[6] = 0.1;
+            colors[0] = colors[1] = colors[2] = 0.75;
+            colors[4] = colors[5] = colors[6] = 0.75;
             colors[3] = colors[7] = 1.0;
         }        
     }
@@ -500,12 +500,12 @@
     
     else if(_arrowDirection == FPPopoverNoArrow)
     {
-        contentRect.origin = CGPointMake(10, 40);
-        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-50);
+        contentRect.origin = CGPointMake(0, 0);
+        contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-20);
         _titleLabel.frame = CGRectMake(10, 10, self.bounds.size.width-20, 20);
 		if (self.title==nil || self.title.length==0) {
-			contentRect.origin = CGPointMake(10, 30);
-			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height-40);
+			contentRect.origin = CGPointMake(10, 0);
+			contentRect.size = CGSizeMake(self.bounds.size.width-20, self.bounds.size.height);
 		}
     }
 
