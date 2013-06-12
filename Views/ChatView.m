@@ -10,6 +10,8 @@
 
 @interface ChatView () {
     
+    #define HEADER_TEXT @"Live Chat Support"
+    
     UIViewController *parentViewController;
     NSInteger viewHeight;
     NSInteger viewWidth;
@@ -247,7 +249,7 @@
     [portraitViewController.view.layer addSublayer:upperBG];
     
     lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin,5,180, 30)];
-    [lblTitle setText:@"Live Chat Support"];
+    [lblTitle setText:HEADER_TEXT];
     [lblTitle setBackgroundColor:[UIColor clearColor]];
     [lblTitle setFont:[UIFont systemFontOfSize:18.0]];
     [lblTitle setTextColor:[UIColor colorWithWhite:0.3 alpha:1]];
@@ -321,7 +323,7 @@
     [landscapeViewController.view.layer addSublayer:upperBG2];
     
     lblTitle2 = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin,5,180, 30)];
-    [lblTitle2 setText:@"Live Chat Support"];
+    [lblTitle2 setText:HEADER_TEXT];
     [lblTitle2 setBackgroundColor:[UIColor clearColor]];
     [lblTitle2 setFont:[UIFont systemFontOfSize:18.0]];
     [lblTitle2 setTextColor:[UIColor colorWithWhite:0.3 alpha:1]];
