@@ -17,6 +17,7 @@
     NSInteger viewWidth;
     NSInteger  windowWidth;
     NSInteger  windowHeight;
+    float borderWidth;
     
     
     NSMutableArray* bubbleMessages;
@@ -83,6 +84,7 @@
     parentViewController = passedViewController;
     windowWidth = [[UIScreen mainScreen ] bounds].size.width;
     windowHeight = [[UIScreen mainScreen ] bounds].size.height;
+    borderWidth = 10;
     
     bubbleMessages = [[NSMutableArray alloc] init];
     
@@ -256,7 +258,7 @@
     [portraitViewController.view addSubview: lblTitle];
     
     hideBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [hideBtn setFrame:CGRectMake(10,5,55,30)];
+    [hideBtn setFrame:CGRectMake(7,6,55,30)];
     [hideBtn setTitle:@"Hide" forState:UIControlStateNormal];
     [hideBtn addTarget:self action:@selector(hideBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [hideBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -318,11 +320,11 @@
     
     //Create upper area with title and top buttons
     upperBG2 = [CALayer layer];
-    upperBG2.frame = CGRectMake(1, 0, viewHeight, 40);
+    upperBG2.frame = CGRectMake(1, 0, viewHeight, 30);
     upperBG2.backgroundColor = [[UIColor colorWithWhite:0.95 alpha:1] CGColor];
     [landscapeViewController.view.layer addSublayer:upperBG2];
     
-    lblTitle2 = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin,5,180, 30)];
+    lblTitle2 = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin,0,180, 30)];
     [lblTitle2 setText:HEADER_TEXT];
     [lblTitle2 setBackgroundColor:[UIColor clearColor]];
     [lblTitle2 setFont:[UIFont systemFontOfSize:18.0]];
@@ -330,14 +332,14 @@
     [landscapeViewController.view addSubview: lblTitle2];
     
     hideBtn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [hideBtn2 setFrame:CGRectMake(10,5,55,30)];
+    [hideBtn2 setFrame:CGRectMake(4,3,55,25)];
     [hideBtn2 setTitle:@"Hide" forState:UIControlStateNormal];
     [hideBtn2 addTarget:self action:@selector(hideBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     [hideBtn2.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [landscapeViewController.view addSubview:hideBtn2];
     
     // Create our chat UIBubbleTableView UI
-    myChat2 = [[UIBubbleTableView alloc] initWithFrame:CGRectMake(10,upperBG2.frame.size.height,viewHeight-40,viewWidth-127)];
+    myChat2 = [[UIBubbleTableView alloc] initWithFrame:CGRectMake(10,upperBG2.frame.size.height,viewHeight-40,viewWidth-102)];
     [myChat2 setBubbleDataSource:landscapeDelegate];
     [myChat2 setBounces:NO];
     [landscapeViewController.view addSubview:myChat2];
@@ -349,11 +351,11 @@
     [landscapeViewController.view.layer addSublayer:topBorder2];
     
     lowerBG2 = [CALayer layer];
-    lowerBG2.frame = CGRectMake(1, myChat2.frame.size.height + upperBG2.frame.size.height+topBorder2.frame.size.height, viewHeight-22, 53);
+    lowerBG2.frame = CGRectMake(1, myChat2.frame.size.height + upperBG2.frame.size.height+topBorder2.frame.size.height, viewHeight-22, 38);
     lowerBG2.backgroundColor = [[UIColor colorWithWhite:0.85 alpha:1] CGColor];
     [landscapeViewController.view.layer addSublayer:lowerBG2];
     
-    msgBox2 = [[UITextField alloc] initWithFrame:CGRectMake(10, myChat2.frame.size.height + upperBG2.frame.size.height+topBorder2.frame.size.height+7, viewHeight-100, 40)];
+    msgBox2 = [[UITextField alloc] initWithFrame:CGRectMake(10, myChat2.frame.size.height + upperBG2.frame.size.height+topBorder2.frame.size.height+4, viewHeight-100, 30)];
     [msgBox2 setBorderStyle: UITextBorderStyleRoundedRect];
     [msgBox2 setFont:[UIFont systemFontOfSize:15]];
     [msgBox2 setText:@""];
@@ -366,7 +368,7 @@
     [landscapeViewController.view addSubview:msgBox2];
     
     sendMsgBtn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [sendMsgBtn2 setFrame:CGRectMake(viewHeight-85, myChat2.frame.size.height + upperBG2.frame.size.height+topBorder2.frame.size.height+7, 60, 40)];
+    [sendMsgBtn2 setFrame:CGRectMake(viewHeight-85, myChat2.frame.size.height + upperBG2.frame.size.height+topBorder2.frame.size.height+4, 60, 30)];
     [sendMsgBtn2 setTitle:@"Send" forState:UIControlStateNormal];
     [sendMsgBtn2.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
     [sendMsgBtn2 addTarget:self action:@selector(sendMsgBtnReturn:) forControlEvents:UIControlEventTouchUpInside];
@@ -444,78 +446,24 @@
 {
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    NSNumber* shrinkSize;
     
     if(UIDeviceOrientationIsPortrait(orientation)) {
         
-        CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        shrinkSize = [NSNumber numberWithFloat:-(keyboardSize.height-borderWidth)];
         
-        CGRect myChatFrame = [myChat frame];
-        myChatFrame.size.height -= keyboardSize.height;
-        [myChat setFrame:myChatFrame];
-        
-        //Disable CALayer implicit animations
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0];
-        
-        CGRect lowerBGFrame = [lowerBG frame];
-        lowerBGFrame.origin.y -= keyboardSize.height;
-        [lowerBG setFrame:lowerBGFrame];
-        
-        CGRect topBorderFrame = [topBorder frame];
-        topBorderFrame.origin.y -= keyboardSize.height;
-        [topBorder setFrame:topBorderFrame];
-        
-        [CATransaction commit];
-        
-        CGRect msgBoxFrame = [msgBox frame];
-        msgBoxFrame.origin.y -= keyboardSize.height;
-        [msgBox setFrame:msgBoxFrame];
-        
-        CGRect sendMsgBtnFrame = [sendMsgBtn frame];
-        sendMsgBtnFrame.origin.y -= keyboardSize.height;
-        [sendMsgBtn setFrame:sendMsgBtnFrame];
-        
-        CGSize fppSize = [fpp contentSize];
-        fppSize.height -= keyboardSize.height;
-        [fpp setContentSize:fppSize];
-        [fpp setupView];
+        //Shrink view by sending negative height to extendChatxx method
+        [self performSelectorOnMainThread:@selector(extendChatInPortraitViewByHeight:) withObject:shrinkSize waitUntilDone:YES];
         
         [myChat scrollToBottomWithAnimation:NO];
         
     } else if (UIDeviceOrientationIsLandscape(orientation)) {
-    
-        CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         
-        CGRect myChatFrame = [myChat2 frame];
-        myChatFrame.size.height -= keyboardSize.width;
-        [myChat2 setFrame:myChatFrame];
+        shrinkSize = [NSNumber numberWithFloat:-(keyboardSize.width-borderWidth)];
         
-        //Disable CALayer implicit animations
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0];
-        
-        CGRect lowerBGFrame = [lowerBG2 frame];
-        lowerBGFrame.origin.y -= keyboardSize.width;
-        [lowerBG2 setFrame:lowerBGFrame];
-        
-        CGRect topBorderFrame = [topBorder2 frame];
-        topBorderFrame.origin.y -= keyboardSize.width;
-        [topBorder2 setFrame:topBorderFrame];
-        
-        [CATransaction commit];
-        
-        CGRect msgBoxFrame = [msgBox2 frame];
-        msgBoxFrame.origin.y -= keyboardSize.width;
-        [msgBox2 setFrame:msgBoxFrame];
-        
-        CGRect sendMsgBtnFrame = [sendMsgBtn2 frame];
-        sendMsgBtnFrame.origin.y -= keyboardSize.width;
-        [sendMsgBtn2 setFrame:sendMsgBtnFrame];
-        
-        CGSize fppSize = [fpp2 contentSize];
-        fppSize.height -= keyboardSize.width;
-        [fpp2 setContentSize:fppSize];
-        [fpp2 setupView];
+        [self performSelectorOnMainThread:@selector(extendChatInLandscapeViewByHeight:) withObject:shrinkSize waitUntilDone:YES];
         
         [myChat2 scrollToBottomWithAnimation:NO];
 
@@ -530,13 +478,17 @@
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
+    NSNumber* expandSize;
+    
     if(UIDeviceOrientationIsPortrait(orientation)) {
         
-        [self performSelectorOnMainThread:@selector(extendChatInPortraitViewByHeight:) withObject:[NSNumber numberWithFloat:keyboardSize.height] waitUntilDone:YES];
+        expandSize = [NSNumber numberWithFloat:(keyboardSize.height-borderWidth)];
+        [self performSelectorOnMainThread:@selector(extendChatInPortraitViewByHeight:) withObject:expandSize waitUntilDone:YES];
                 
     }  else if (UIDeviceOrientationIsLandscape(orientation)) {
         
-        [self performSelectorOnMainThread:@selector(extendChatInLandscapeViewByHeight:) withObject:[NSNumber numberWithFloat:keyboardSize.width] waitUntilDone:YES];
+        expandSize = [NSNumber numberWithFloat:(keyboardSize.width-borderWidth)];
+        [self performSelectorOnMainThread:@selector(extendChatInLandscapeViewByHeight:) withObject:expandSize waitUntilDone:YES];
     }
     
     [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
