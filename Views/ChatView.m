@@ -238,6 +238,7 @@
     
     viewWidth = windowWidth;
     viewHeight = windowHeight-20;
+    float headerMargin = viewWidth/2 - 70;
     
     //Create upper area with title and top buttons
     upperBG = [CALayer layer];
@@ -245,7 +246,7 @@
     upperBG.backgroundColor = [[UIColor colorWithWhite:0.95 alpha:1] CGColor];
     [portraitViewController.view.layer addSublayer:upperBG];
     
-    lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(80,5,180, 30)];
+    lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin,5,180, 30)];
     [lblTitle setText:@"Live Chat Support"];
     [lblTitle setBackgroundColor:[UIColor clearColor]];
     [lblTitle setFont:[UIFont systemFontOfSize:18.0]];
@@ -311,6 +312,7 @@
     
     viewWidth = windowWidth-20;
     viewHeight = windowHeight;
+    float headerMargin = viewHeight/2 - 70;
     
     //Create upper area with title and top buttons
     upperBG2 = [CALayer layer];
@@ -318,7 +320,7 @@
     upperBG2.backgroundColor = [[UIColor colorWithWhite:0.95 alpha:1] CGColor];
     [landscapeViewController.view.layer addSublayer:upperBG2];
     
-    lblTitle2 = [[UILabel alloc] initWithFrame:CGRectMake(200,5,180, 30)];
+    lblTitle2 = [[UILabel alloc] initWithFrame:CGRectMake(headerMargin,5,180, 30)];
     [lblTitle2 setText:@"Live Chat Support"];
     [lblTitle2 setBackgroundColor:[UIColor clearColor]];
     [lblTitle2 setFont:[UIFont systemFontOfSize:18.0]];
