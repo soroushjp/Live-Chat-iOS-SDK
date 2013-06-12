@@ -14,6 +14,7 @@
 #import "UIBubbleTableView.h"
 #import "UIBubbleTableViewDataSource.h"
 #import "NSBubbleData.h"
+#import "BubbleDelegate.h"
 
 @class ChatView;
 @protocol ChatViewDelegate <NSObject>
@@ -26,7 +27,7 @@
 
 @end
 
-@interface ChatView : NSObject  <UIBubbleTableViewDataSource, UITextFieldDelegate> {
+@interface ChatView : NSObject  <UITextFieldDelegate> {
     
 
     

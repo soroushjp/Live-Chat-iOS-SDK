@@ -26,6 +26,7 @@
 		730AD11F175FD9F300E17FB5 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD10E175FD9F300E17FB5 /* UIBubbleTableViewCell.m */; };
 		730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */; };
 		730AD22F176028B700E17FB5 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD22E176028B700E17FB5 /* ChatView.m */; };
+		73CCC6421767EA370045F216 /* BubbleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CCC6411767EA370045F216 /* BubbleDelegate.m */; };
 		73D907571760614200512113 /* MessagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907561760614200512113 /* MessagesModel.m */; };
 		73D9075B1761789400512113 /* LMSockets.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075A1761789400512113 /* LMSockets.m */; };
 		73D907641761797B00512113 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075D1761797B00512113 /* base64.c */; };
@@ -82,6 +83,8 @@
 		730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
 		730AD22D176028B700E17FB5 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Views/ChatView.h; sourceTree = "<group>"; };
 		730AD22E176028B700E17FB5 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Views/ChatView.m; sourceTree = "<group>"; };
+		73CCC6401767EA370045F216 /* BubbleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleDelegate.h; sourceTree = "<group>"; };
+		73CCC6411767EA370045F216 /* BubbleDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleDelegate.m; sourceTree = "<group>"; };
 		73D907551760614200512113 /* MessagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesModel.h; path = Models/MessagesModel.h; sourceTree = "<group>"; };
 		73D907561760614200512113 /* MessagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagesModel.m; path = Models/MessagesModel.m; sourceTree = "<group>"; };
 		73D907591761789400512113 /* LMSockets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LMSockets.h; path = Libraries/LMSockets.h; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 			children = (
 				73D907551760614200512113 /* MessagesModel.h */,
 				73D907561760614200512113 /* MessagesModel.m */,
+				73CCC6401767EA370045F216 /* BubbleDelegate.h */,
+				73CCC6411767EA370045F216 /* BubbleDelegate.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				73D907651761797B00512113 /* NSData+SRB64Additions.m in Sources */,
 				73D907661761797B00512113 /* SRWebSocket.m in Sources */,
 				73D907711762659A00512113 /* ChatController.m in Sources */,
+				73CCC6421767EA370045F216 /* BubbleDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

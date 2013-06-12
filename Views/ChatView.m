@@ -19,6 +19,9 @@
     
     NSMutableArray* bubbleMessages;
     
+    BubbleDelegate* portraitDelegate;
+    BubbleDelegate* landscapeDelegate;
+    
      //Portrait view UI elements
     FPPopoverController *fpp;
     UIBubbleTableView* myChat;
@@ -43,7 +46,11 @@
     UIButton *sendMsgBtn2;
     UIButton *hideBtn2;
     
-    //Current orientation
+    //Current view status
+    UIDeviceOrientation currentOrientation;
+    BOOL landscapeIsShrunk;
+    BOOL portraitIsShrunk;
+
 }
 
 
@@ -51,10 +58,7 @@
 - (void) addLiveChatBtnOnNavItem:(UINavigationItem*)navItem;
 - (void) addListeners;
 - (IBAction)startChatBtnPressed:(id)sender;
-- (BOOL) showChat;
-- (BOOL) createPopupoverWithController:(UIViewController*)controller;
-- (NSInteger)rowsForBubbleTable:(UIBubbleTableView *)tableView;
-- (NSBubbleData *)bubbleTableView:(UIBubbleTableView *)tableView dataForRow:(NSInteger)row;
+- (BOOL) startChat;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (void)keyboardShow:(NSNotification *)notification;
 - (void)keyboardHide:(NSNotification *)notification;
@@ -84,6 +88,13 @@
     
     
     bubbleMessages = [self createBubbleArrayFromMessageArray: passedMessages];
+    
+    //Need a separate class with delegate methods for UIBubbleTableView since we have two separate UIBubbleTableView views, myChat and myChat2 for portrait and landscape, respectively.
+    portraitDelegate = [[BubbleDelegate alloc] init];
+    [portraitDelegate setBubbleMessages:bubbleMessages];
+    landscapeDelegate = [[BubbleDelegate alloc] init];
+    [landscapeDelegate setBubbleMessages:bubbleMessages];
+    
     [self addLiveChatBtnOnNavItem:navItem];
     [self addListeners];
 
@@ -171,30 +182,49 @@
 
 - (IBAction)startChatBtnPressed:(id)sender {
     
-    [self showChat];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if(UIDeviceOrientationIsPortrait(orientation) && fpp.view.hidden) {
+        [fpp.view setHidden:NO];
+    } else if (UIDeviceOrientationIsLandscape(orientation) && fpp2.view.hidden) {
+        [fpp2.view setHidden:NO];
+    } else {
+        [self startChat];
+    }
     
 }
 
-- (BOOL) showChat {
+- (BOOL) startChat {
     
     //Call functions to create controller, insert chat UI into controller as subview and call up Popover containing chat.
     
-//    portraitViewController = [[ChatViewController alloc]init];
-//    [self createPortraitChatView];
-//    [self createPopupoverWithController:portraitViewController];
-
-    landscapeViewController = [[ChatViewController alloc]init];
+    portraitViewController = [[ChatViewController alloc]init];    
     [self createPortraitChatView];
-    
-    return YES;
-}
 
-- (BOOL) createPopupoverWithController:(UIViewController*)controller {
     
-    //Initialize our popup
+//    double delayInSeconds = 0.4;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        
+            landscapeViewController = [[ChatViewController alloc]init];
+            [self createLandscapeChatView];
+//
+//    });
+//    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if(UIDeviceOrientationIsPortrait(orientation)) {
+    
+        [fpp2.view setHidden:YES];
+        
+    } else if (UIDeviceOrientationIsLandscape(orientation)) {
+    
+        
+        [fpp.view setHidden:YES];
+        
+    }
     
     return YES;
-    
 }
 
 - (BOOL) createPortraitChatView {
@@ -218,14 +248,14 @@
     hideBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [hideBtn setFrame:CGRectMake(10,5,55,30)];
     [hideBtn setTitle:@"Hide" forState:UIControlStateNormal];
-    [hideBtn addTarget:self action:@selector(hideBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    [hideBtn addTarget:self action:@selector(hideBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     //[lblTitle setTextColor:[UIColor colorWithWhite:0.3 alpha:1]];
     [hideBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [portraitViewController.view addSubview:hideBtn];
     
     // Create our chat UIBubbleTableView UI
     myChat = [[UIBubbleTableView alloc] initWithFrame:CGRectMake(10,upperBG.frame.size.height,viewWidth-40,viewHeight-127)];
-    [myChat setBubbleDataSource:self];
+    [myChat setBubbleDataSource:portraitDelegate];
     [myChat setBounces:NO];
     [portraitViewController.view addSubview:myChat];
     //    [myChat setBackgroundColor:[UIColor blackColor]];
@@ -262,7 +292,7 @@
     
     fpp = [[FPPopoverController alloc] initWithViewController:portraitViewController];
     
-    [fpp setContentSize:CGSizeMake(viewHeight,viewWidth-10)];
+    [fpp setContentSize:CGSizeMake(viewWidth,viewHeight-10)];
     [fpp setArrowDirection:FPPopoverNoArrow];
     [fpp setBorder:NO];
     [fpp setTint:FPPopoverLightGrayTint];
@@ -295,14 +325,14 @@
     hideBtn2 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [hideBtn2 setFrame:CGRectMake(10,5,55,30)];
     [hideBtn2 setTitle:@"Hide" forState:UIControlStateNormal];
-    [hideBtn2 addTarget:self action:@selector(hideBtnPress:) forControlEvents:UIControlEventTouchUpInside];
+    [hideBtn2 addTarget:self action:@selector(hideBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
     //[lblTitle setTextColor:[UIColor colorWithWhite:0.3 alpha:1]];
     [hideBtn2.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [landscapeViewController.view addSubview:hideBtn2];
     
     // Create our chat UIBubbleTableView UI
     myChat2 = [[UIBubbleTableView alloc] initWithFrame:CGRectMake(10,upperBG2.frame.size.height,viewHeight-40,viewWidth-127)];
-    [myChat2 setBubbleDataSource:self];
+    [myChat2 setBubbleDataSource:landscapeDelegate];
     [myChat2 setBounces:NO];
     [landscapeViewController.view addSubview:myChat2];
     //    [myChat2 setBackgroundColor:[UIColor blackColor]];
@@ -349,30 +379,11 @@
     return YES;
 }
 
-- (NSInteger)rowsForBubbleTable:(UIBubbleTableView *)tableView
-{
-    return [bubbleMessages count];
-}
-
-- (NSBubbleData *)bubbleTableView:(UIBubbleTableView *)tableView dataForRow:(NSInteger)row
-{
-    return [bubbleMessages objectAtIndex:row];
-}
-
 //Used to route return from Send button to common textfield return function textFieldShouldReturn
-- (IBAction)hideBtnPress:(id)sender {
+- (IBAction)hideBtnPressed:(id)sender {
     
-    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-    
-    if(UIDeviceOrientationIsPortrait(orientation)) {
-        
-        [fpp dismissPopoverAnimated:YES];
-    
-    } else if (UIDeviceOrientationIsLandscape(orientation)) {
-        
-        [fpp2 dismissPopoverAnimated:YES];
-    
-    }
+    [fpp.view setHidden:YES];
+    [fpp2.view setHidden:YES];
     
 }
 
@@ -412,9 +423,12 @@
     
     [bubbleMessages addObject:newMsg];
     [myChat reloadData];
+ //   [myChat2 reloadData];
 
     return YES;
 }
+
+# pragma mark - Notification listeners - keyboard show/hide notifcation, dismiss keyboard, orientation change
 
 //Adjust the chat window height when keyboard appears
 - (void)keyboardShow:(NSNotification *)notification
@@ -507,7 +521,7 @@
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     if(UIDeviceOrientationIsPortrait(orientation)) {
-    
+        
         CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
         
         CGRect myChatFrame = [myChat frame];
@@ -518,13 +532,13 @@
         [CATransaction begin];
         [CATransaction setAnimationDuration:0];
         
-            CGRect lowerBGFrame = [lowerBG frame];
-            lowerBGFrame.origin.y += keyboardSize.height;
-            [lowerBG setFrame:lowerBGFrame];
-            
-            CGRect topBorderFrame = [topBorder frame];
-            topBorderFrame.origin.y += keyboardSize.height;
-            [topBorder setFrame:topBorderFrame];
+        CGRect lowerBGFrame = [lowerBG frame];
+        lowerBGFrame.origin.y += keyboardSize.height;
+        [lowerBG setFrame:lowerBGFrame];
+        
+        CGRect topBorderFrame = [topBorder frame];
+        topBorderFrame.origin.y += keyboardSize.height;
+        [topBorder setFrame:topBorderFrame];
         
         [CATransaction commit];
         //Done disabling implicit animations
@@ -545,31 +559,77 @@
     }
 }
 
+
 //Dismiss keyboard from message box if a user taps anywhere but keyboard on screen
 -(void)dismissKeyboard {
     [msgBox resignFirstResponder];
 }
 
-//- (void) orientationChange:(NSNotification*) notification {
-//    
-//    viewWidth = parentViewController.view.frame.size.width;
-//    viewHeight = parentViewController.view.frame.size.height;
-//    
-//    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-//    
-//    if(UIDeviceOrientationIsPortrait(orientation)) {
-//        //This means orientation is landscape (old orientation was portrait).
-//
-//        landscapeViewController = [[ChatViewController alloc]init];
-//        [fpp dismissPopoverAnimated:NO];
-//        [self createLandscapeChatView];
-//        
-//    } else if (UIDeviceOrientationIsLandscape(orientation)) {
-//        //This means orientation is portrait (old orientation was landscape).
-//        
-//        [fpp2 dismissPopoverAnimated:NO];
-//        [self createPortraitChatView];
-//    }
-//}
+- (void) reorientChat {
+    
+    viewWidth = parentViewController.view.frame.size.width;
+    viewHeight = parentViewController.view.frame.size.height;
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if(UIDeviceOrientationIsLandscape(orientation)) {
+        //This means new orientation is landscape (old orientation was portrait).
+        
+        if (portraitViewController.isViewLoaded && portraitViewController.view.window && fpp.view.hidden == NO) {
+            [fpp.view setHidden:YES];
+        }
+        if (landscapeViewController.isViewLoaded && landscapeViewController.view.window && fpp2.view.hidden == YES) {
+            //[fpp2.view setHidden:NO];
+            
+            double delayInSeconds = 0.3;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                [fpp2.view setHidden:NO];
+                
+            });
+        
+        }
+        
+    } else if (UIDeviceOrientationIsPortrait(orientation)) {
+        //This means new orientation is portrait (old orientation was landscape).
+        
+        if (landscapeViewController.isViewLoaded && landscapeViewController.view.window && fpp2.view.hidden == NO) {
+            [fpp2.view setHidden:YES];
+        }
+        if (portraitViewController.isViewLoaded && portraitViewController.view.window && fpp.view.hidden == YES) {
+            
+            double delayInSeconds = 0.3;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                
+                [fpp.view setHidden:NO];
+                
+            });
+            
+        }
+
+    }
+
+}
+
+- (void)orientationChange:(NSNotification *)notification {
+    
+    //We don't care about orientation if not chat views are open
+    if (fpp.view.hidden && fpp2.view.hidden) return;
+    
+    //Obtaining the current device orientation
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    //Ignoring specific orientations
+    if (orientation == UIDeviceOrientationFaceUp || orientation == UIDeviceOrientationFaceDown || orientation == UIDeviceOrientationUnknown || currentOrientation == orientation) {
+        return;
+    }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(relayoutLayers) object:nil];
+    //Responding only to changes in landscape or portrait
+    currentOrientation = orientation;
+    //
+    [self performSelector:@selector(reorientChat) withObject:nil afterDelay:0];
+}
 
 @end

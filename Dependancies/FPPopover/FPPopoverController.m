@@ -127,18 +127,18 @@
         _touchView.clipsToBounds = NO;
         [self.view addSubview:_touchView];
         
-#if __has_feature(objc_arc)
-        //ARC on
-        id bself = self;
-#else
-        //ARC off
-        __block id bself = self;
-#endif
-        
-        [_touchView setTouchedOutsideBlock:^{
-            
-            [bself dismissPopoverAnimated:YES];
-        }];
+//#if __has_feature(objc_arc)
+//        //ARC on
+//        id bself = self;
+//#else
+//        //ARC off
+//        __block id bself = self;
+//#endif
+//        
+//        [_touchView setTouchedOutsideBlock:^{
+//            
+//            [bself dismissPopoverAnimated:YES];
+//        }];
 
         self.contentSize = CGSizeMake(200, 300); //default size
 
@@ -540,12 +540,12 @@
 //        r.size.width = [self parentWidth] - r.origin.x;
 //    }
     
-    //need to be resized vertically ?
-    if(r.origin.y + r.size.height > [self parentHeight])
-    {
-        r.size.height = [self parentHeight] - r.origin.y;
-    }
-    
+//    //need to be resized vertically ?
+//    if(r.origin.y + r.size.height > [self parentHeight])
+//    {
+//        r.size.height = [self parentHeight] - r.origin.y;
+//    }
+//    
     
     if([[UIApplication sharedApplication] isStatusBarHidden] == NO)
     {
