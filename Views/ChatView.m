@@ -57,7 +57,7 @@
 - (NSMutableArray*) createBubbleArrayFromMessageArray:(NSMutableArray*) array;
 - (void) addLiveChatBtnOnNavItem:(UINavigationItem*)navItem;
 - (void) addListeners;
-- (IBAction)startChatBtnPressed:(id)sender;
+- (void)startChatBtnPressed:(id)sender;
 - (BOOL) startChat;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 - (void)keyboardShow:(NSNotification *)notification;
@@ -180,7 +180,7 @@
 
 }
 
-- (IBAction)startChatBtnPressed:(id)sender {
+- (void)startChatBtnPressed:(id)sender {
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
@@ -189,28 +189,36 @@
     } else if (UIDeviceOrientationIsLandscape(orientation) && fpp2.view.hidden) {
         [fpp2.view setHidden:NO];
     } else {
-        [self startChat];
+        [self performSelectorOnMainThread:@selector(startChat) withObject:nil waitUntilDone:YES];
     }
     
+    [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
+
+}
+
+- (void) refreshUI {
+
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    
+    if(UIDeviceOrientationIsPortrait(orientation)) {
+        [myChat performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    } else if (UIDeviceOrientationIsLandscape(orientation)) {
+        [myChat2 performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    }
+
 }
 
 - (BOOL) startChat {
     
     //Call functions to create controller, insert chat UI into controller as subview and call up Popover containing chat.
     
-    portraitViewController = [[ChatViewController alloc]init];    
+    portraitViewController = [[ChatViewController alloc]init];
     [self createPortraitChatView];
 
+    landscapeViewController = [[ChatViewController alloc]init];
+    [self createLandscapeChatView];
+
     
-//    double delayInSeconds = 0.4;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        
-            landscapeViewController = [[ChatViewController alloc]init];
-            [self createLandscapeChatView];
-//
-//    });
-//    
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
     if(UIDeviceOrientationIsPortrait(orientation)) {
@@ -249,7 +257,6 @@
     [hideBtn setFrame:CGRectMake(10,5,55,30)];
     [hideBtn setTitle:@"Hide" forState:UIControlStateNormal];
     [hideBtn addTarget:self action:@selector(hideBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    //[lblTitle setTextColor:[UIColor colorWithWhite:0.3 alpha:1]];
     [hideBtn.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [portraitViewController.view addSubview:hideBtn];
     
@@ -258,7 +265,6 @@
     [myChat setBubbleDataSource:portraitDelegate];
     [myChat setBounces:NO];
     [portraitViewController.view addSubview:myChat];
-    //    [myChat setBackgroundColor:[UIColor blackColor]];
     
     //Create lower message text and send button area
     topBorder = [CALayer layer];
@@ -298,7 +304,7 @@
     [fpp setTint:FPPopoverLightGrayTint];
     [fpp setAlpha:0.85];
     [fpp presentPopoverFromPoint:CGPointMake(0, 0)];
-    
+
     return YES;
 }
 
@@ -380,7 +386,7 @@
 }
 
 //Used to route return from Send button to common textfield return function textFieldShouldReturn
-- (IBAction)hideBtnPressed:(id)sender {
+- (void)hideBtnPressed:(id)sender {
     
     [fpp.view setHidden:YES];
     [fpp2.view setHidden:YES];
@@ -388,9 +394,11 @@
 }
 
 //Used to route return from Send button to common textfield return function textFieldShouldReturn
-- (IBAction)sendMsgBtnReturn:(id)sender {
+- (void)sendMsgBtnReturn:(id)sender {
     
-    [self textFieldShouldReturn:msgBox];
+    if(sender == sendMsgBtn) [self textFieldShouldReturn:msgBox];
+    if(sender == sendMsgBtn2) [self textFieldShouldReturn:msgBox2];
+    
 }
 
 //Dismiss keyboard on Done
@@ -406,7 +414,7 @@
     }
     
     if(success) [textField setText:@""];
-    
+       
     return YES;
 }
 
@@ -422,9 +430,11 @@
     NSBubbleData *newMsg = [NSBubbleData dataWithText:text date:date type:messageType];
     
     [bubbleMessages addObject:newMsg];
-    [myChat reloadData];
- //   [myChat2 reloadData];
+    [portraitDelegate setBubbleMessages:bubbleMessages];
+    [landscapeDelegate setBubbleMessages:bubbleMessages];
 
+    [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
+    
     return YES;
 }
 
@@ -509,7 +519,7 @@
         [fpp2 setupView];
         
         [myChat2 scrollToBottomWithAnimation:NO];
-    
+
     }
     
 }
@@ -519,50 +529,101 @@
 {
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     if(UIDeviceOrientationIsPortrait(orientation)) {
         
-        CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        [self performSelectorOnMainThread:@selector(extendChatInPortraitViewByHeight:) withObject:[NSNumber numberWithFloat:keyboardSize.height] waitUntilDone:YES];
+                
+    }  else if (UIDeviceOrientationIsLandscape(orientation)) {
         
-        CGRect myChatFrame = [myChat frame];
-        myChatFrame.size.height += keyboardSize.height;
-        [myChat setFrame:myChatFrame];
-        
-        //Disable CALayer implicit animations
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0];
-        
-        CGRect lowerBGFrame = [lowerBG frame];
-        lowerBGFrame.origin.y += keyboardSize.height;
-        [lowerBG setFrame:lowerBGFrame];
-        
-        CGRect topBorderFrame = [topBorder frame];
-        topBorderFrame.origin.y += keyboardSize.height;
-        [topBorder setFrame:topBorderFrame];
-        
-        [CATransaction commit];
-        //Done disabling implicit animations
-        
-        CGRect msgBoxFrame = [msgBox frame];
-        msgBoxFrame.origin.y += keyboardSize.height;
-        [msgBox setFrame:msgBoxFrame];
-        
-        CGRect sendMsgBtnFrame = [sendMsgBtn frame];
-        sendMsgBtnFrame.origin.y += keyboardSize.height;
-        [sendMsgBtn setFrame:sendMsgBtnFrame];
-        
-        CGSize fppSize = [fpp contentSize];
-        fppSize.height += keyboardSize.height;
-        [fpp setContentSize:fppSize];
-        [fpp setupView];
-        
+        [self performSelectorOnMainThread:@selector(extendChatInLandscapeViewByHeight:) withObject:[NSNumber numberWithFloat:keyboardSize.width] waitUntilDone:YES];
     }
+    
+    [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
+
+}
+
+- (void) extendChatInPortraitViewByHeight:(NSNumber*)NSHeight {
+    
+    float height = [NSHeight floatValue];
+    
+    CGRect myChatFrame = [myChat frame];
+    myChatFrame.size.height += height;
+    [myChat setFrame:myChatFrame];
+    
+    //Disable CALayer implicit animations
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:0];
+    
+    CGRect lowerBGFrame = [lowerBG frame];
+    lowerBGFrame.origin.y += height;
+    [lowerBG setFrame:lowerBGFrame];
+    
+    CGRect topBorderFrame = [topBorder frame];
+    topBorderFrame.origin.y += height;
+    [topBorder setFrame:topBorderFrame];
+    
+    [CATransaction commit];
+    //Done disabling implicit animations
+    
+    CGRect msgBoxFrame = [msgBox frame];
+    msgBoxFrame.origin.y += height;
+    [msgBox setFrame:msgBoxFrame];
+    
+    CGRect sendMsgBtnFrame = [sendMsgBtn frame];
+    sendMsgBtnFrame.origin.y += height;
+    [sendMsgBtn setFrame:sendMsgBtnFrame];
+    
+    CGSize fppSize = [fpp contentSize];
+    fppSize.height += height;
+    [fpp setContentSize:fppSize];
+    [fpp setupView];
+    
+}
+
+- (void) extendChatInLandscapeViewByHeight:(NSNumber*)NSHeight {
+
+    float height = [NSHeight floatValue];
+    
+    CGRect myChatFrame = [myChat2 frame];
+    myChatFrame.size.height += height;
+    [myChat2 setFrame:myChatFrame];
+    
+    //Disable CALayer implicit animations
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:0];
+    
+    CGRect lowerBGFrame = [lowerBG2 frame];
+    lowerBGFrame.origin.y += height;
+    [lowerBG2 setFrame:lowerBGFrame];
+    
+    CGRect topBorderFrame = [topBorder2 frame];
+    topBorderFrame.origin.y += height;
+    [topBorder2 setFrame:topBorderFrame];
+    
+    [CATransaction commit];
+    
+    CGRect msgBoxFrame = [msgBox2 frame];
+    msgBoxFrame.origin.y += height;
+    [msgBox2 setFrame:msgBoxFrame];
+    
+    CGRect sendMsgBtnFrame = [sendMsgBtn2 frame];
+    sendMsgBtnFrame.origin.y += height;
+    [sendMsgBtn2 setFrame:sendMsgBtnFrame];
+    
+    CGSize fppSize = [fpp2 contentSize];
+    fppSize.height += height;
+    [fpp2 setContentSize:fppSize];
+    [fpp2 setupView];
+    
 }
 
 
 //Dismiss keyboard from message box if a user taps anywhere but keyboard on screen
 -(void)dismissKeyboard {
     [msgBox resignFirstResponder];
+    [msgBox2 resignFirstResponder];
 }
 
 - (void) reorientChat {
@@ -579,16 +640,15 @@
             [fpp.view setHidden:YES];
         }
         if (landscapeViewController.isViewLoaded && landscapeViewController.view.window && fpp2.view.hidden == YES) {
-            //[fpp2.view setHidden:NO];
             
             double delayInSeconds = 0.3;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 
                 [fpp2.view setHidden:NO];
-                
+                [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
             });
-        
+            
         }
         
     } else if (UIDeviceOrientationIsPortrait(orientation)) {
@@ -604,22 +664,23 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 
                 [fpp.view setHidden:NO];
-                
+                [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
             });
             
         }
 
     }
-
+    
+    
+    
 }
 
 - (void)orientationChange:(NSNotification *)notification {
     
-    //We don't care about orientation if not chat views are open
-    if (fpp.view.hidden && fpp2.view.hidden) return;
-    
     //Obtaining the current device orientation
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    
+    if (currentOrientation == orientation) NSLog(@"current orientation equals orientation");
     
     //Ignoring specific orientations
     if (orientation == UIDeviceOrientationFaceUp || orientation == UIDeviceOrientationFaceDown || orientation == UIDeviceOrientationUnknown || currentOrientation == orientation) {
@@ -628,8 +689,12 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(relayoutLayers) object:nil];
     //Responding only to changes in landscape or portrait
     currentOrientation = orientation;
-    //
+    
+    //We don't care about orientation if no chat views are open
+    if (fpp.view.hidden && fpp2.view.hidden) return;
+    
     [self performSelector:@selector(reorientChat) withObject:nil afterDelay:0];
+    
 }
 
 @end

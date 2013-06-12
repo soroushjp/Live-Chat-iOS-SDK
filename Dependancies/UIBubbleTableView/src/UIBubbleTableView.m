@@ -148,11 +148,12 @@
     }
 
     [super reloadData];
-    
-    [self scrollToBottomWithAnimation:YES];
+
+    [self scrollToBottomWithAnimation:NO];
+
 }
 
-- (BOOL) scrollToBottomWithAnimation:(BOOL)animated {
+- (BOOL) scrollToBottomWithAnimation:(BOOL) animated {
     //Autoscroll to bottom of chat. Returns whether scroll actually happened.
     
     int sectionCount = [self numberOfSections];
