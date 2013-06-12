@@ -11,14 +11,13 @@
 @interface ChatView () {
     
     #define HEADER_TEXT @"Live Chat Support"
+    #define BORDER_WIDTH 10 //Border width of FPPopover. Alter if this changes.
     
     UIViewController *parentViewController;
     NSInteger viewHeight;
     NSInteger viewWidth;
     NSInteger  windowWidth;
     NSInteger  windowHeight;
-    float borderWidth;
-    
     
     NSMutableArray* bubbleMessages;
     
@@ -84,7 +83,6 @@
     parentViewController = passedViewController;
     windowWidth = [[UIScreen mainScreen ] bounds].size.width;
     windowHeight = [[UIScreen mainScreen ] bounds].size.height;
-    borderWidth = 10;
     
     bubbleMessages = [[NSMutableArray alloc] init];
     
@@ -192,10 +190,9 @@
         [fpp2.view setHidden:NO];
     } else {
         [self performSelectorOnMainThread:@selector(startChat) withObject:nil waitUntilDone:YES];
-        [self performSelector:@selector(refreshUI) withObject:nil afterDelay:0];
     }
     
-    [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
+    [self performSelector:@selector(refreshUI) withObject:nil afterDelay:0];
 
 }
 
@@ -452,7 +449,7 @@
     
     if(UIDeviceOrientationIsPortrait(orientation)) {
         
-        shrinkSize = [NSNumber numberWithFloat:-(keyboardSize.height-borderWidth)];
+        shrinkSize = [NSNumber numberWithFloat:-(keyboardSize.height-BORDER_WIDTH)];
         
         //Shrink view by sending negative height to extendChatxx method
         [self performSelectorOnMainThread:@selector(extendChatInPortraitViewByHeight:) withObject:shrinkSize waitUntilDone:YES];
@@ -461,7 +458,7 @@
         
     } else if (UIDeviceOrientationIsLandscape(orientation)) {
         
-        shrinkSize = [NSNumber numberWithFloat:-(keyboardSize.width-borderWidth)];
+        shrinkSize = [NSNumber numberWithFloat:-(keyboardSize.width-BORDER_WIDTH)];
         
         [self performSelectorOnMainThread:@selector(extendChatInLandscapeViewByHeight:) withObject:shrinkSize waitUntilDone:YES];
         
@@ -482,12 +479,12 @@
     
     if(UIDeviceOrientationIsPortrait(orientation)) {
         
-        expandSize = [NSNumber numberWithFloat:(keyboardSize.height-borderWidth)];
+        expandSize = [NSNumber numberWithFloat:(keyboardSize.height-BORDER_WIDTH)];
         [self performSelectorOnMainThread:@selector(extendChatInPortraitViewByHeight:) withObject:expandSize waitUntilDone:YES];
                 
     }  else if (UIDeviceOrientationIsLandscape(orientation)) {
         
-        expandSize = [NSNumber numberWithFloat:(keyboardSize.width-borderWidth)];
+        expandSize = [NSNumber numberWithFloat:(keyboardSize.width-BORDER_WIDTH)];
         [self performSelectorOnMainThread:@selector(extendChatInLandscapeViewByHeight:) withObject:expandSize waitUntilDone:YES];
     }
     
@@ -627,8 +624,6 @@
     
     //Obtaining the current device orientation
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    if (currentOrientation == orientation) NSLog(@"current orientation equals orientation");
     
     //Ignoring specific orientations
     if (orientation == UIDeviceOrientationFaceUp || orientation == UIDeviceOrientationFaceDown || orientation == UIDeviceOrientationUnknown || currentOrientation == orientation) {
