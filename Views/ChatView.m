@@ -79,10 +79,8 @@
     delegate = ChatViewDelegate;
     
     parentViewController = passedViewController;
-    viewWidth = parentViewController.view.frame.size.width;
-    viewHeight = parentViewController.view.frame.size.height;
     windowWidth = [[UIScreen mainScreen ] bounds].size.width;
-    windowHeight = [[UIScreen mainScreen ] bounds].size.height - 20;
+    windowHeight = [[UIScreen mainScreen ] bounds].size.height;
     
     bubbleMessages = [[NSMutableArray alloc] init];
     
@@ -190,6 +188,7 @@
         [fpp2.view setHidden:NO];
     } else {
         [self performSelectorOnMainThread:@selector(startChat) withObject:nil waitUntilDone:YES];
+        [self performSelector:@selector(refreshUI) withObject:nil afterDelay:0];
     }
     
     [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
@@ -237,8 +236,8 @@
 
 - (BOOL) createPortraitChatView {
     
-    viewWidth = parentViewController.view.frame.size.width;
-    viewHeight = parentViewController.view.frame.size.height;
+    viewWidth = windowWidth;
+    viewHeight = windowHeight-20;
     
     //Create upper area with title and top buttons
     upperBG = [CALayer layer];
@@ -310,10 +309,8 @@
 
 - (BOOL) createLandscapeChatView {
     
-    
-    
-    viewWidth = 300;
-    viewHeight = 568;
+    viewWidth = windowWidth-20;
+    viewHeight = windowHeight;
     
     //Create upper area with title and top buttons
     upperBG2 = [CALayer layer];
@@ -332,7 +329,6 @@
     [hideBtn2 setFrame:CGRectMake(10,5,55,30)];
     [hideBtn2 setTitle:@"Hide" forState:UIControlStateNormal];
     [hideBtn2 addTarget:self action:@selector(hideBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
-    //[lblTitle setTextColor:[UIColor colorWithWhite:0.3 alpha:1]];
     [hideBtn2.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [landscapeViewController.view addSubview:hideBtn2];
     
@@ -341,7 +337,6 @@
     [myChat2 setBubbleDataSource:landscapeDelegate];
     [myChat2 setBounces:NO];
     [landscapeViewController.view addSubview:myChat2];
-    //    [myChat2 setBackgroundColor:[UIColor blackColor]];
     
     //Create lower message text and send button area
     topBorder2 = [CALayer layer];
@@ -627,9 +622,6 @@
 }
 
 - (void) reorientChat {
-    
-    viewWidth = parentViewController.view.frame.size.width;
-    viewHeight = parentViewController.view.frame.size.height;
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     
