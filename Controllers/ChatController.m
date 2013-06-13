@@ -67,6 +67,10 @@
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     NSLog(@"Connection successfully made");
     statusConnected = 1;
+    
+    NSString* msgJSON = [NSString stringWithFormat:@"{ \"messageType\": 1, \"companyKey\": 1, \"deviceId\": 1 }"];
+    [socket send:msgJSON];
+    NSLog(@"Sent over message: %@", msgJSON);
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
@@ -91,6 +95,12 @@
     }
     
     int msgType = [[messageObject objectForKey:@"messageType"] intValue];
+
+    if (msgType == 1) {
+        
+        NSLog(message);
+
+    }
     
     if (msgType == 2) {
         //For this message type, we expect a chat message

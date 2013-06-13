@@ -623,7 +623,7 @@
 - (void)orientationChange:(NSNotification *)notification {
     
     //Obtaining the current device orientation
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];   
     
     //Ignoring specific orientations
     if (orientation == UIDeviceOrientationFaceUp || orientation == UIDeviceOrientationFaceDown || orientation == UIDeviceOrientationUnknown || currentOrientation == orientation) {
