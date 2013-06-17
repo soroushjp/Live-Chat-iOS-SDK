@@ -282,8 +282,8 @@
     [msgBox setBorderStyle: UITextBorderStyleRoundedRect];
     [msgBox setFont:[UIFont systemFontOfSize:15]];
     [msgBox setText:@""];
-    [msgBox setAutocorrectionType: UITextAutocorrectionTypeNo];
-    [msgBox setKeyboardType: UIKeyboardTypeDefault];
+    [msgBox setAutocorrectionType: UITextAutocorrectionTypeYes];
+    [msgBox setKeyboardType: UIKeyboardTypeASCIICapable];
     [msgBox setReturnKeyType: UIReturnKeySend];
     [msgBox setClearButtonMode: UITextFieldViewModeWhileEditing];
     [msgBox setContentVerticalAlignment: UIControlContentVerticalAlignmentCenter];
@@ -356,8 +356,8 @@
     [msgBox2 setBorderStyle: UITextBorderStyleRoundedRect];
     [msgBox2 setFont:[UIFont systemFontOfSize:15]];
     [msgBox2 setText:@""];
-    [msgBox2 setAutocorrectionType: UITextAutocorrectionTypeNo];
-    [msgBox2 setKeyboardType: UIKeyboardTypeDefault];
+    [msgBox2 setAutocorrectionType: UITextAutocorrectionTypeYes];
+    [msgBox2 setKeyboardType: UIKeyboardTypeASCIICapable];
     [msgBox2 setReturnKeyType: UIReturnKeySend];
     [msgBox2 setClearButtonMode: UITextFieldViewModeWhileEditing];
     [msgBox2 setContentVerticalAlignment: UIControlContentVerticalAlignmentCenter];

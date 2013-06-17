@@ -98,6 +98,7 @@
 
     if (msgType == 1) {
         
+        //Temporary output to console for debugging. Need to actually respond to type 1 messages.
         NSLog(message);
 
     }
