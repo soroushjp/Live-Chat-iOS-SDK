@@ -48,10 +48,14 @@
     UIButton *sendMsgBtn2;
     UIButton *hideBtn2;
     
+    //Shared UI status elements
+    UITextField *textFieldBeingEdited;
+    
     //Current view status
     UIDeviceOrientation currentOrientation;
     BOOL landscapeIsShrunk;
     BOOL portraitIsShrunk;
+    BOOL msgBoxHadFocus;
 
 }
 
@@ -156,14 +160,24 @@
 - (void) addListeners {
 
     //Attach observers to keyboard opening/closing so we can adjust chat window based on whether keyboard is open
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardShow:)
-                                                 name:UIKeyboardDidShowNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardHide:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(keyboardShow:)
+     name:UIKeyboardDidShowNotification
+     object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(keyboardHide:)
+     name:UIKeyboardWillHideNotification
+     object:nil];
+    
+    //Observers to keep landscape and portrait message boxes in sync as user types in one or the other
+    [[NSNotificationCenter defaultCenter]
+    addObserver:self
+     selector:@selector(changeBothFieldsText:)
+     name:UITextFieldTextDidChangeNotification
+     object:nil ] ;
     
     //Attach observer for device orientation change
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -399,22 +413,7 @@
     
 }
 
-//Dismiss keyboard on Done
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    
-    if([[textField text] isEqualToString:@""]) return NO;
-    
-    BOOL success = [self addMsgToViewWithText:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0] author:@"customer"];
-    
-    if(delegate != nil && [delegate respondsToSelector:@selector(userDidTypeMessage:date:)]) {
-        [delegate userDidTypeMessage:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0]];
-    }
-    
-    if(success) [textField setText:@""];
-       
-    return YES;
-}
+
 
 - (BOOL) addMsgToViewWithText:(NSString*)text date:(NSDate*)date author:(NSString*)author {
     
@@ -434,6 +433,50 @@
     [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
     
     return YES;
+}
+
+# pragma mark - Textfield event handlers
+
+-(void)changeBothFieldsText:(NSNotification*)notification {
+    
+    if ( [textFieldBeingEdited isEqual:msgBox] ) {
+        msgBox2.text = msgBox.text;
+    }
+    else if ( [textFieldBeingEdited isEqual:msgBox2] )
+        msgBox.text = msgBox2.text;
+}
+
+# pragma mark - Textfield delegate methods
+
+//Dismiss keyboard on Done
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    if([[textField text] isEqualToString:@""]) return NO;
+    
+    BOOL success = [self addMsgToViewWithText:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0] author:@"customer"];
+    
+    if(delegate != nil && [delegate respondsToSelector:@selector(userDidTypeMessage:date:)]) {
+        [delegate userDidTypeMessage:[textField text] date:[NSDate dateWithTimeIntervalSinceNow:0]];
+    }
+    
+    if(success) {
+        [msgBox setText:@""];
+        [msgBox2 setText:@""];
+    }
+    
+    return YES;
+}
+
+//Figure out which textfield is being edited, for syncing between text fields as user types
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    if ( [textField isEqual:msgBox] ) {
+        textFieldBeingEdited = msgBox;
+    }
+    else if ( [textField isEqual:msgBox2] )
+        textFieldBeingEdited = msgBox2;
+    
 }
 
 # pragma mark - Notification listeners - keyboard show/hide notifcation, dismiss keyboard, orientation change
@@ -591,6 +634,7 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 
                 [fpp2.view setHidden:NO];
+                if(msgBoxHadFocus) [msgBox2 becomeFirstResponder];
                 [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
             });
             
@@ -609,6 +653,7 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 
                 [fpp.view setHidden:NO];
+                if(msgBoxHadFocus) [msgBox becomeFirstResponder];
                 [self performSelectorOnMainThread:@selector(refreshUI) withObject:nil waitUntilDone:YES];
             });
             
@@ -635,6 +680,9 @@
     
     //We don't care about orientation if no chat views are open
     if (fpp.view.hidden && fpp2.view.hidden) return;
+    
+    if ([msgBox isFirstResponder] || [msgBox2 isFirstResponder]) msgBoxHadFocus = YES;
+    else msgBoxHadFocus = FALSE;
     
     [self performSelector:@selector(reorientChat) withObject:nil afterDelay:0];
     
