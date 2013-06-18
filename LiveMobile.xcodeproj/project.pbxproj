@@ -26,6 +26,7 @@
 		730AD11F175FD9F300E17FB5 /* UIBubbleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD10E175FD9F300E17FB5 /* UIBubbleTableViewCell.m */; };
 		730AD120175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */; };
 		730AD22F176028B700E17FB5 /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 730AD22E176028B700E17FB5 /* ChatView.m */; };
+		7315098717700E0D004EB669 /* stitch_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7315098617700E0D004EB669 /* stitch_back.png */; };
 		73CCC6421767EA370045F216 /* BubbleDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CCC6411767EA370045F216 /* BubbleDelegate.m */; };
 		73D907571760614200512113 /* MessagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D907561760614200512113 /* MessagesModel.m */; };
 		73D9075B1761789400512113 /* LMSockets.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D9075A1761789400512113 /* LMSockets.m */; };
@@ -83,6 +84,7 @@
 		730AD111175FD9F300E17FB5 /* UIBubbleTypingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBubbleTypingTableViewCell.m; sourceTree = "<group>"; };
 		730AD22D176028B700E17FB5 /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = Views/ChatView.h; sourceTree = "<group>"; };
 		730AD22E176028B700E17FB5 /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = Views/ChatView.m; sourceTree = "<group>"; };
+		7315098617700E0D004EB669 /* stitch_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stitch_back.png; path = "../../../../../../LiveMobile/Image Work/stitch_back.png"; sourceTree = "<group>"; };
 		73CCC6401767EA370045F216 /* BubbleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BubbleDelegate.h; sourceTree = "<group>"; };
 		73CCC6411767EA370045F216 /* BubbleDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BubbleDelegate.m; sourceTree = "<group>"; };
 		73D907551760614200512113 /* MessagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagesModel.h; path = Models/MessagesModel.h; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		730AD043175DB45400E17FB5 /* FPPopover */ = {
 			isa = PBXGroup;
 			children = (
+				7315098617700E0D004EB669 /* stitch_back.png */,
 				730AD044175DB45400E17FB5 /* ARCMacros.h */,
 				730AD045175DB45400E17FB5 /* FPPopoverController.h */,
 				730AD046175DB45400E17FB5 /* FPPopoverController.m */,
@@ -403,6 +406,7 @@
 				730AD119175FD9F300E17FB5 /* typingMine@2x.png in Resources */,
 				730AD11A175FD9F300E17FB5 /* typingSomeone.png in Resources */,
 				730AD11B175FD9F300E17FB5 /* typingSomeone@2x.png in Resources */,
+				7315098717700E0D004EB669 /* stitch_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
