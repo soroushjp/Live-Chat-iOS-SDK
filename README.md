@@ -14,4 +14,4 @@ Uses WebSockets (using SocketRocket library https://github.com/square/SocketRock
 
 README will be expanded with more instructions upon request for people wanting to include this in their iOS applications.
 
-Feel free to contact me at me AT soroushjp.com
+Feel free to email me at: me AT soroushjp.com
